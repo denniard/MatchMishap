@@ -20,27 +20,28 @@ object LeaderboardManager {
 
     suspend fun submitScore(playerId: String, playerName: String, wonGame: Boolean, scoreDelta: Int) {
         val docRef = lbRef.document(playerId)
-        db.runTransaction { transaction ->
-            val snapshot = transaction.get(docRef)
-            val currentWins = if (snapshot.exists()) (snapshot.getLong("wins") ?: 0L).toInt() else 0
-            val currentPoints = if (snapshot.exists()) (snapshot.getLong("points") ?: 0L).toInt() else 0
+        try {
+            db.runTransaction { transaction ->
+                val snapshot = transaction.get(docRef)
+                val currentWins = if (snapshot.exists()) (snapshot.getLong("wins") ?: 0L).toInt() else 0
+                val currentPoints = if (snapshot.exists()) (snapshot.getLong("points") ?: 0L).toInt() else 0
 
-            val newWins = currentWins + if (wonGame) 1 else 0
-            val newPoints = currentPoints + scoreDelta
+                val newWins = currentWins + if (wonGame) 1 else 0
+                val newPoints = currentPoints + scoreDelta
 
-            val entry = LeaderboardEntry(
-                playerId = playerId,
-                playerName = playerName,
-                wins = newWins,
-                points = newPoints
-            )
-            transaction.set(docRef, entry)
-        }.await()
+                val entry = LeaderboardEntry(
+                    playerId = playerId,
+                    playerName = playerName,
+                    wins = newWins,
+                    points = newPoints
+                )
+                transaction.set(docRef, entry)
+            }.await()
+        } catch (_: Exception) {}
     }
 
     fun getTopLeaderboard(): Flow<List<LeaderboardEntry>> = callbackFlow {
         val listener = lbRef.orderBy("wins", Query.Direction.DESCENDING)
-            .orderBy("points", Query.Direction.DESCENDING)
             .limit(10)
             .addSnapshotListener { snapshot, error ->
                 if (error != null || snapshot == null) {

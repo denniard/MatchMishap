@@ -55,7 +55,18 @@ fun OnlineLobbyScreen(
     onBackToMenu: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var playerName by remember { mutableStateOf("Player ${(1..99).random()}") }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val prefs = remember { context.getSharedPreferences("match_mishap_prefs", android.content.Context.MODE_PRIVATE) }
+    var playerName by remember {
+        mutableStateOf(prefs.getString("saved_player_name", null) ?: "Player ${(1..99).random()}")
+    }
+
+    androidx.compose.runtime.LaunchedEffect(playerName) {
+        if (playerName.isNotBlank()) {
+            prefs.edit().putString("saved_player_name", playerName).apply()
+        }
+    }
+
     var roomCodeInput by remember { mutableStateOf("") }
     var currentRoomId by remember { mutableStateOf<String?>(null) }
     var currentRoom by remember { mutableStateOf<GameRoom?>(null) }

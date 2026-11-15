@@ -246,6 +246,72 @@ object OnlineGameManager {
         flow.value = room
     }
 
+    suspend fun restartOnlineMatch(roomId: String) {
+        val db = getFirestore()
+        var currentPlayers = mutableListOf<RoomPlayer>()
+        var hostId = ""
+
+        try {
+            if (db != null) {
+                val docRef = db.collection("game_rooms").document(roomId)
+                val snapshot = docRef.get().await()
+                if (snapshot.exists()) {
+                    hostId = snapshot.getString("hostId") ?: ""
+                    @Suppress("UNCHECKED_CAST")
+                    val rawPlayers = snapshot.get("players") as? List<Map<String, Any>> ?: emptyList()
+                    currentPlayers = rawPlayers.map { p ->
+                        RoomPlayer(
+                            id = p["id"]?.toString() ?: "",
+                            name = p["name"]?.toString() ?: "",
+                            isHost = p["isHost"] as? Boolean ?: false,
+                            isReady = p["isReady"] as? Boolean ?: false
+                        )
+                    }.toMutableList()
+                }
+            }
+        } catch (_: Exception) {}
+
+        if (currentPlayers.isEmpty()) {
+            val localRoom = localRooms[roomId]?.value
+            if (localRoom != null) {
+                currentPlayers = localRoom.players.toMutableList()
+                hostId = localRoom.hostId
+            }
+        }
+
+        val initialGameState = GameEngine.initGame(GameMode.FREE_FOR_ALL)
+        val updatedPlayers = initialGameState.players.mapIndexed { index, player ->
+            val roomP = currentPlayers.getOrElse(index) { RoomPlayer("ai_${index + 1}", "Bot ${index + 1}") }
+            player.copy(
+                id = index,
+                name = roomP.name,
+                isHuman = !roomP.id.startsWith("ai_")
+            )
+        }
+
+        val syncedState = initialGameState.copy(
+            players = updatedPlayers,
+            statusMessage = "Rematch Started! ${updatedPlayers[0].name}'s turn."
+        )
+
+        val json = GameStateSerializer.toJson(syncedState)
+
+        try {
+            if (db != null) {
+                db.collection("game_rooms").document(roomId).update(
+                    mapOf(
+                        "isStarted" to true,
+                        "gameStateJson" to json
+                    )
+                ).await()
+            }
+        } catch (_: Exception) {}
+
+        val room = GameRoom(roomId = roomId, hostId = hostId, players = currentPlayers, isStarted = true, gameStateJson = json)
+        val flow = localRooms.getOrPut(roomId) { MutableStateFlow(room) }
+        flow.value = room
+    }
+
     suspend fun syncGameState(roomId: String, state: GameState) {
         val json = GameStateSerializer.toJson(state)
         try {

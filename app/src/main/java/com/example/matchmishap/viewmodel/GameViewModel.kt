@@ -166,15 +166,24 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun restartGame(mode: GameMode = _uiState.value.gameMode) {
-        aiTurnJob?.cancel()
-        onlineObservationJob?.cancel()
-        activeOnlineRoomId = null
-        activeOnlinePlayerName = null
-        isHostPlayer = false
+        val roomId = activeOnlineRoomId
+        if (roomId != null) {
+            if (isHostPlayer) {
+                viewModelScope.launch {
+                    OnlineGameManager.restartOnlineMatch(roomId)
+                }
+            }
+        } else {
+            aiTurnJob?.cancel()
+            onlineObservationJob?.cancel()
+            activeOnlineRoomId = null
+            activeOnlinePlayerName = null
+            isHostPlayer = false
 
-        val newState = GameEngine.initGame(mode)
-        updateState(newState)
-        checkAndTriggerAiTurn()
+            val newState = GameEngine.initGame(mode)
+            updateState(newState)
+            checkAndTriggerAiTurn()
+        }
     }
 
     private fun checkAndTriggerAiTurn() {

@@ -109,6 +109,8 @@ fun GameTableScreen(
     var prevPlayerHandSizes by remember { mutableStateOf(gameState.players.map { it.hand.size }) }
     var isInitialized by remember { mutableStateOf(false) }
 
+    val myIndex = gameState.players.indexOfFirst { it.isHuman }.coerceAtLeast(0)
+
     LaunchedEffect(gameState) {
         if (!isInitialized) {
             isInitialized = true
@@ -123,7 +125,8 @@ fun GameTableScreen(
                 gameState.players[i].hand.size - (prevPlayerHandSizes.getOrElse(i) { gameState.players[i].hand.size })
             } ?: gameState.getPlayerAfter(gameState.currentPlayerIndex, -1).id
 
-            val startOffset = playerOffsets[playingPlayerIndex] ?: discardPileOffset
+            val playingScreenSeat = Math.floorMod(playingPlayerIndex - myIndex, gameState.players.size.coerceAtLeast(1))
+            val startOffset = playerOffsets[playingScreenSeat] ?: discardPileOffset
             val endOffset = discardPileOffset
             val playedCard = gameState.topCard
 
@@ -147,7 +150,8 @@ fun GameTableScreen(
             val prevHandSize = prevPlayerHandSizes.getOrElse(i) { currentHandSize }
             if (currentHandSize > prevHandSize) {
                 val startOffset = drawPileOffset
-                val endOffset = playerOffsets[i] ?: drawPileOffset
+                val receivingScreenSeat = Math.floorMod(i - myIndex, gameState.players.size.coerceAtLeast(1))
+                val endOffset = playerOffsets[receivingScreenSeat] ?: drawPileOffset
 
                 val animId = System.currentTimeMillis() + (0..1000).random().toLong() + i
                 activeAnimations.add(
@@ -170,13 +174,13 @@ fun GameTableScreen(
         prevPlayerHandSizes = gameState.players.map { it.hand.size }
     }
 
-    val humanPlayer = gameState.humanPlayer
-    val isHumanTurn = gameState.isHumanTurn
     val is2v2Mode = gameState.gameMode == GameMode.TWO_VS_TWO
+    val humanPlayer = gameState.players.getOrElse(myIndex) { gameState.players.first() }
+    val isHumanTurn = gameState.currentPlayerIndex == myIndex
 
-    val opponentA = gameState.players.getOrNull(1) ?: humanPlayer
-    val partner1 = gameState.players.getOrNull(2) ?: humanPlayer
-    val opponentB = gameState.players.getOrNull(3) ?: humanPlayer
+    val opponentA = gameState.players.getOrElse((myIndex + 1) % gameState.players.size.coerceAtLeast(1)) { humanPlayer }
+    val partner1 = gameState.players.getOrElse((myIndex + 2) % gameState.players.size.coerceAtLeast(1)) { humanPlayer }
+    val opponentB = gameState.players.getOrElse((myIndex + 3) % gameState.players.size.coerceAtLeast(1)) { humanPlayer }
 
     Box(
         modifier = modifier
