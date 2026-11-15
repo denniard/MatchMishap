@@ -190,7 +190,10 @@ fun TopPartnerSeat(
             modifier = Modifier.weight(1f),
             contentAlignment = Alignment.TopCenter
         ) {
-            PartnerHandFanView(cardCount = partnerPlayer.cardCount)
+            PartnerHandFanView(
+                hand = partnerPlayer.hand,
+                is2v2Mode = is2v2Mode
+            )
         }
 
         PlayerAvatarBadge(
@@ -204,24 +207,49 @@ fun TopPartnerSeat(
 }
 
 @Composable
-private fun PartnerHandFanView(cardCount: Int) {
-    val displayCount = cardCount.coerceAtMost(7)
+private fun PartnerHandFanView(
+    hand: List<Card>,
+    is2v2Mode: Boolean
+) {
+    val scrollState = rememberScrollState()
+
     Box(
-        modifier = Modifier.height(38.dp),
+        modifier = Modifier.height(48.dp),
         contentAlignment = Alignment.TopCenter
     ) {
-        for (i in 0 until displayCount) {
-            val rotationAngle = (i - displayCount / 2f) * 6f
-            val xOffset = ((i - displayCount / 2f) * 12).dp
-
-            CardBackView(
-                width = 24.dp,
-                height = 36.dp,
-                label = "",
+        if (is2v2Mode) {
+            // Display teammate's face-up cards so you can see your partner's hand!
+            Row(
                 modifier = Modifier
-                    .offset(x = xOffset)
-                    .rotate(rotationAngle)
-            )
+                    .horizontalScroll(scrollState)
+                    .padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy((-10).dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                hand.forEach { card ->
+                    CardView(
+                        card = card,
+                        isPlayable = false,
+                        width = 32.dp,
+                        height = 48.dp
+                    )
+                }
+            }
+        } else {
+            val displayCount = hand.size.coerceAtMost(7)
+            for (i in 0 until displayCount) {
+                val rotationAngle = (i - displayCount / 2f) * 6f
+                val xOffset = ((i - displayCount / 2f) * 12).dp
+
+                CardBackView(
+                    width = 24.dp,
+                    height = 36.dp,
+                    label = "",
+                    modifier = Modifier
+                        .offset(x = xOffset)
+                        .rotate(rotationAngle)
+                )
+            }
         }
     }
 }

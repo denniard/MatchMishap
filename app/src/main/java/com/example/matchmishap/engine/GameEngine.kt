@@ -15,9 +15,9 @@ object GameEngine {
 
         val players = listOf(
             Player(id = 0, name = "You", isHuman = true, teamId = 0),
-            Player(id = 1, name = "Opponent A", isHuman = false, teamId = 1),
-            Player(id = 2, name = "Partner 1", isHuman = false, teamId = if (gameMode == GameMode.TWO_VS_TWO) 0 else 2),
-            Player(id = 3, name = "Opponent B", isHuman = false, teamId = if (gameMode == GameMode.TWO_VS_TWO) 1 else 3)
+            Player(id = 1, name = "Bot 1", isHuman = false, teamId = 1),
+            Player(id = 2, name = if (gameMode == GameMode.TWO_VS_TWO) "Partner Bot" else "Bot 2", isHuman = false, teamId = if (gameMode == GameMode.TWO_VS_TWO) 0 else 2),
+            Player(id = 3, name = if (gameMode == GameMode.TWO_VS_TWO) "Opponent 2" else "Bot 3", isHuman = false, teamId = if (gameMode == GameMode.TWO_VS_TWO) 1 else 3)
         )
 
         val dealtPlayers = mutableListOf<Player>()
