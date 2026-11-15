@@ -27,6 +27,8 @@ import com.example.matchmishap.viewmodel.GameViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 enum class AppScreen {
     MAIN_MENU,
@@ -36,6 +38,7 @@ enum class AppScreen {
 
 class MainActivity : ComponentActivity() {
 
+    val db = FirebaseFirestore.getInstance()
     private val gameViewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
