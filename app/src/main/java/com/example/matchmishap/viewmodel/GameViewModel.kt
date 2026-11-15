@@ -7,6 +7,8 @@ import com.example.matchmishap.engine.AiEngine
 import com.example.matchmishap.engine.AudioAnnouncer
 import com.example.matchmishap.engine.BackgroundMusicPlayer
 import com.example.matchmishap.engine.GameEngine
+import com.example.matchmishap.engine.GameStateSerializer
+import com.example.matchmishap.engine.OnlineGameManager
 import com.example.matchmishap.model.Card
 import com.example.matchmishap.model.CardColor
 import com.example.matchmishap.model.CardType
@@ -27,23 +29,81 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val uiState: StateFlow<GameState> = _uiState.asStateFlow()
 
     private var aiTurnJob: Job? = null
+    private var onlineObservationJob: Job? = null
+    private var activeOnlineRoomId: String? = null
+    private var activeOnlinePlayerName: String? = null
+    private var isHostPlayer: Boolean = false
+
+    val isLocalHumanTurn: Boolean
+        get() {
+            val name = activeOnlinePlayerName
+            return if (name != null) {
+                _uiState.value.currentPlayer.name.equals(name, ignoreCase = true)
+            } else {
+                _uiState.value.isHumanTurn
+            }
+        }
 
     init {
         backgroundMusicPlayer.start()
         checkAndTriggerAiTurn()
     }
 
+    fun startOnlineObservation(roomId: String, playerName: String, initialJson: String = "") {
+        activeOnlineRoomId = roomId
+        activeOnlinePlayerName = playerName
+
+        if (initialJson.isNotBlank()) {
+            val parsedState = GameStateSerializer.fromJson(initialJson)
+            if (parsedState != null) {
+                applyParsedOnlineState(parsedState, playerName)
+            }
+        }
+
+        onlineObservationJob?.cancel()
+        onlineObservationJob = viewModelScope.launch {
+            OnlineGameManager.observeRoom(roomId).collect { room ->
+                if (room != null) {
+                    isHostPlayer = (room.hostId.isNotBlank() && room.players.firstOrNull { it.isHost }?.name.equals(playerName, ignoreCase = true))
+                    if (room.gameStateJson.isNotBlank()) {
+                        val parsedState = GameStateSerializer.fromJson(room.gameStateJson)
+                        if (parsedState != null) {
+                            applyParsedOnlineState(parsedState, playerName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun applyParsedOnlineState(parsedState: GameState, playerName: String) {
+        val adjustedPlayers = parsedState.players.map { p ->
+            p.copy(isHuman = p.name.equals(playerName, ignoreCase = true))
+        }
+        val adjustedState = parsedState.copy(players = adjustedPlayers)
+        _uiState.value = adjustedState
+        checkAndTriggerAiTurn()
+    }
+
     private fun updateState(newState: GameState) {
         val oldState = _uiState.value
         _uiState.value = newState
+
         if (newState.statusMessage.isNotBlank() && newState.statusMessage != oldState.statusMessage) {
             audioAnnouncer.speakForHuman(newState.statusMessage, newState.humanPlayer.name)
+        }
+
+        val roomId = activeOnlineRoomId
+        if (roomId != null) {
+            viewModelScope.launch {
+                OnlineGameManager.syncGameState(roomId, newState)
+            }
         }
     }
 
     fun playCard(card: Card) {
         val currentState = _uiState.value
-        if (!currentState.isHumanTurn || currentState.isWaitingForColorChoice) return
+        if (!isLocalHumanTurn || currentState.isWaitingForColorChoice) return
 
         if (!card.canPlayOn(currentState.topCard, currentState.activeColor, currentState.accumulatedPenalty)) {
             return
@@ -69,19 +129,19 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun drawCard() {
         val currentState = _uiState.value
-        if (!currentState.isHumanTurn || currentState.isWaitingForColorChoice) return
+        if (!isLocalHumanTurn || currentState.isWaitingForColorChoice) return
 
         val newState = GameEngine.drawCard(currentState)
         updateState(newState)
 
-        if (!newState.isHumanTurn) {
+        if (!isLocalHumanTurn) {
             checkAndTriggerAiTurn()
         }
     }
 
     fun passDrawnCard() {
         val currentState = _uiState.value
-        if (!currentState.isHumanTurn || currentState.drawnCardThisTurn == null) return
+        if (!isLocalHumanTurn || currentState.drawnCardThisTurn == null) return
 
         val newState = GameEngine.passTurn(currentState)
         updateState(newState)
@@ -97,6 +157,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun restartGame(mode: GameMode = _uiState.value.gameMode) {
         aiTurnJob?.cancel()
+        onlineObservationJob?.cancel()
+        activeOnlineRoomId = null
+        activeOnlinePlayerName = null
+        isHostPlayer = false
+
         val newState = GameEngine.initGame(mode)
         updateState(newState)
         checkAndTriggerAiTurn()
@@ -106,8 +171,17 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         aiTurnJob?.cancel()
 
         val currentState = _uiState.value
-        if (currentState.isGameOver || currentState.isWaitingForColorChoice || currentState.isHumanTurn) {
+        if (currentState.isGameOver || currentState.isWaitingForColorChoice) {
             return
+        }
+
+        if (activeOnlineRoomId != null) {
+            if (!isHostPlayer) return
+            val currentP = currentState.currentPlayer
+            val isActualAi = currentP.name.startsWith("Bot ", ignoreCase = true) || currentP.name.startsWith("ai_", ignoreCase = true)
+            if (!isActualAi) return
+        } else {
+            if (currentState.isHumanTurn) return
         }
 
         aiTurnJob = viewModelScope.launch {
@@ -118,8 +192,17 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private suspend fun processAiTurn() {
         while (true) {
             val currentState = _uiState.value
-            if (currentState.isGameOver || currentState.isWaitingForColorChoice || currentState.isHumanTurn) {
+            if (currentState.isGameOver || currentState.isWaitingForColorChoice) {
                 break
+            }
+
+            if (activeOnlineRoomId != null) {
+                if (!isHostPlayer) break
+                val currentP = currentState.currentPlayer
+                val isActualAi = currentP.name.startsWith("Bot ", ignoreCase = true) || currentP.name.startsWith("ai_", ignoreCase = true)
+                if (!isActualAi) break
+            } else {
+                if (currentState.isHumanTurn) break
             }
 
             delay(1000L)

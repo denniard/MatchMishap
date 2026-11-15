@@ -96,7 +96,7 @@ class MainActivity : ComponentActivity() {
                                     onStartOnlineGame = { roomId, name, id ->
                                         onlinePlayerName = name
                                         onlinePlayerId = id
-                                        gameViewModel.restartGame()
+                                        gameViewModel.startOnlineObservation(roomId, name)
                                         currentScreen = AppScreen.GAME_TABLE
                                     },
                                     onBackToMenu = {
