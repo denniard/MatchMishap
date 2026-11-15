@@ -49,6 +49,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         checkAndTriggerAiTurn()
     }
 
+    fun pauseBackgroundAudio() {
+        backgroundMusicPlayer.stop()
+        aiTurnJob?.cancel()
+    }
+
+    fun resumeBackgroundAudio() {
+        backgroundMusicPlayer.start()
+        checkAndTriggerAiTurn()
+    }
+
     fun startOnlineObservation(roomId: String, playerName: String, initialJson: String = "") {
         activeOnlineRoomId = roomId
         activeOnlinePlayerName = playerName

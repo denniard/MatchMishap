@@ -1,8 +1,10 @@
 package com.example.matchmishap.ui.screens
 
-import androidx.compose.foundation.Canvas
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +21,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.MenuBook
+import androidx.compose.material.icons.rounded.Groups
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material.icons.rounded.Settings
@@ -28,36 +31,30 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.foundation.Image
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import com.example.matchmishap.R
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.matchmishap.R
 import com.example.matchmishap.engine.GameEngine
 import com.example.matchmishap.model.Card
 import com.example.matchmishap.model.CardColor
@@ -85,6 +82,7 @@ fun GameTableScreen(
     onPassTurn: () -> Unit,
     onRestartGame: () -> Unit,
     onExitToMenu: () -> Unit,
+    onReturnToLobby: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     var showRulesModal by remember { mutableStateOf(false) }
@@ -218,7 +216,8 @@ fun GameTableScreen(
                 onRulesClick = { showRulesModal = true },
                 onSettingsClick = { showSettingsModal = true },
                 onRestartClick = onRestartGame,
-                onMenuClick = onExitToMenu
+                onMenuClick = onExitToMenu,
+                onReturnToLobby = onReturnToLobby
             )
 
             Box(
@@ -254,7 +253,6 @@ fun GameTableScreen(
                         .onGloballyPositioned { playerOffsets[3] = calculateCenter(it) }
                 )
 
-                // Central Table Area shifted upward (-28.dp)
                 CentralTableView(
                     topCard = gameState.topCard,
                     activeColor = gameState.activeColor,
@@ -273,7 +271,6 @@ fun GameTableScreen(
                         .offset(y = (-28).dp)
                 )
 
-                // Bottom Seat (PLAYER 1 / YOU - Centered horizontally so it doesn't cover left/right opponents)
                 PlayerHandTray(
                     humanPlayer = humanPlayer,
                     isHumanTurn = isHumanTurn,
@@ -306,7 +303,8 @@ fun GameTableScreen(
                 winningTeam = gameState.winningTeam,
                 isHumanWinner = gameState.winner?.isHuman == true || (is2v2Mode && gameState.winner?.teamId == 0),
                 onPlayAgain = onRestartGame,
-                onMainMenu = onExitToMenu
+                onMainMenu = onExitToMenu,
+                onReturnToLobby = onReturnToLobby
             )
         }
 
@@ -326,7 +324,8 @@ private fun GameHeaderBar(
     onRulesClick: () -> Unit,
     onSettingsClick: () -> Unit,
     onRestartClick: () -> Unit,
-    onMenuClick: () -> Unit
+    onMenuClick: () -> Unit,
+    onReturnToLobby: (() -> Unit)? = null
 ) {
     Row(
         modifier = Modifier
@@ -349,6 +348,37 @@ private fun GameHeaderBar(
                     tint = Color.White,
                     modifier = Modifier.size(16.dp)
                 )
+            }
+
+            if (onReturnToLobby != null) {
+                Spacer(modifier = Modifier.width(6.dp))
+                Surface(
+                    shape = RoundedCornerShape(10.dp),
+                    color = Color(0xFFE91E63),
+                    onClick = onReturnToLobby,
+                    shadowElevation = 2.dp
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Groups,
+                            contentDescription = "Lobby",
+                            tint = Color.White,
+                            modifier = Modifier.size(12.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = "LOBBY",
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                fontWeight = FontWeight.Black,
+                                color = Color.White,
+                                fontSize = 10.sp
+                            )
+                        )
+                    }
+                }
             }
 
             Spacer(modifier = Modifier.width(8.dp))

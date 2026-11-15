@@ -27,8 +27,6 @@ import com.example.matchmishap.viewmodel.GameViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.google.firebase.firestore.FirebaseFirestore
-
 
 enum class AppScreen {
     MAIN_MENU,
@@ -38,7 +36,6 @@ enum class AppScreen {
 
 class MainActivity : ComponentActivity() {
 
-    val db = FirebaseFirestore.getInstance()
     private val gameViewModel: GameViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +79,7 @@ class MainActivity : ComponentActivity() {
                             AppScreen.MAIN_MENU -> {
                                 MainMenuScreen(
                                     onStartGame = { selectedMode ->
+                                        onlinePlayerId = ""
                                         gameViewModel.restartGame(selectedMode)
                                         currentScreen = AppScreen.GAME_TABLE
                                     },
@@ -112,7 +110,10 @@ class MainActivity : ComponentActivity() {
                                     onSelectWildColor = { color -> gameViewModel.selectWildColor(color) },
                                     onPassTurn = { gameViewModel.passDrawnCard() },
                                     onRestartGame = { gameViewModel.restartGame() },
-                                    onExitToMenu = { currentScreen = AppScreen.MAIN_MENU }
+                                    onExitToMenu = { currentScreen = AppScreen.MAIN_MENU },
+                                    onReturnToLobby = if (onlinePlayerId.isNotBlank()) {
+                                        { currentScreen = AppScreen.ONLINE_LOBBY }
+                                    } else null
                                 )
                             }
                         }
@@ -120,5 +121,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        gameViewModel.pauseBackgroundAudio()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        gameViewModel.resumeBackgroundAudio()
     }
 }

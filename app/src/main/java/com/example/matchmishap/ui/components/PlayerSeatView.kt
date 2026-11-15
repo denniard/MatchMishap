@@ -214,7 +214,7 @@ private fun PartnerHandFanView(
     val scrollState = rememberScrollState()
 
     Box(
-        modifier = Modifier.height(48.dp),
+        modifier = Modifier.height(76.dp),
         contentAlignment = Alignment.TopCenter
     ) {
         if (is2v2Mode) {
@@ -222,16 +222,16 @@ private fun PartnerHandFanView(
             Row(
                 modifier = Modifier
                     .horizontalScroll(scrollState)
-                    .padding(horizontal = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy((-10).dp),
+                    .padding(horizontal = 4.dp),
+                horizontalArrangement = Arrangement.spacedBy((-12).dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 hand.forEach { card ->
                     CardView(
                         card = card,
                         isPlayable = false,
-                        width = 32.dp,
-                        height = 48.dp
+                        width = 48.dp,
+                        height = 72.dp
                     )
                 }
             }
