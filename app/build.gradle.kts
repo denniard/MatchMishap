@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.jetbrains.kotlin.plugin.serialization)
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -39,9 +38,15 @@ android {
     }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        freeCompilerArgs.add("-Xskip-metadata-version-check")
+        freeCompilerArgs.add("-Xskip-prerelease-check")
+    }
+}
+
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
-    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-firestore:24.11.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.accompanist.permissions)
@@ -77,7 +82,6 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.moshi.kotlin)
     implementation(libs.okhttp)
-    implementation(libs.play.services.location)
     implementation(libs.retrofit)
     testImplementation(libs.androidx.core)
     testImplementation(libs.androidx.junit)

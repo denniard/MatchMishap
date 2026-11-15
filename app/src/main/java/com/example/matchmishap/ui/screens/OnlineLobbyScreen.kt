@@ -342,7 +342,7 @@ fun OnlineLobbyScreen(
                         Spacer(modifier = Modifier.height(4.dp))
 
                         if (isHost) {
-                            val canStart = (room?.players?.size ?: 0) >= 2
+                            val canStart = (room?.players?.size ?: 0) >= 1
                             Button(
                                 onClick = {
                                     scope.launch {
@@ -362,7 +362,7 @@ fun OnlineLobbyScreen(
                                 Icon(imageVector = Icons.Rounded.PlayArrow, contentDescription = null, tint = Color.White)
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text(
-                                    text = if (canStart) "START GAME (FILL WITH AI)" else "WAITING FOR 2ND PLAYER...",
+                                    text = "START GAME (FILL WITH AI)",
                                     style = MaterialTheme.typography.titleSmall.copy(
                                         fontWeight = FontWeight.Black,
                                         color = Color.White
