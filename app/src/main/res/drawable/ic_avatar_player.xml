@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background Circle Gradient representation -->
+    <path
+        android:fillColor="#0077B6"
+        android:pathData="M50,5 C74.8,5 95,25.2 95,50 C95,74.8 74.8,95 50,95 C25.2,95 5,74.8 5,50 C5,25.2 25.2,5 50,5 Z" />
+
+    <!-- Player Cap / Headband -->
+    <path
+        android:fillColor="#00B4D8"
+        android:pathData="M30,38 C30,22 70,22 70,38 L72,44 L28,44 Z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M65,36 L85,42 L80,48 L65,42 Z" />
+
+    <!-- Face Skin -->
+    <path
+        android:fillColor="#FFE0B2"
+        android:pathData="M32,45 C32,38 68,38 68,45 C68,68 32,68 32,45 Z" />
+
+    <!-- Confident Eyes & Smile -->
+    <path
+        android:fillColor="#212121"
+        android:pathData="M42,50 C44,50 45,52 45,54 C45,56 44,58 42,58 C40,58 39,56 39,54 C39,52 40,50 42,50 Z" />
+    <path
+        android:fillColor="#212121"
+        android:pathData="M58,50 C60,50 61,52 61,54 C61,56 60,58 58,58 C56,58 55,56 55,54 C55,52 56,50 58,50 Z" />
+    <path
+        android:strokeColor="#D32F2F"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M44,68 Q50,75 56,68" />
+</vector>

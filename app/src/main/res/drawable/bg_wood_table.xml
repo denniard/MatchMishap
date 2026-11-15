@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="150dp"
+    android:viewportWidth="800"
+    android:viewportHeight="600">
+
+    <!-- Rich Wood Table Base Background -->
+    <path
+        android:fillColor="#3D2314"
+        android:pathData="M0,0 L800,0 L800,600 L0,600 Z" />
+
+    <!-- Wood Grain Planks / Gradient Highlights -->
+    <path
+        android:fillColor="#4A2E1B"
+        android:pathData="M0,0 L800,0 L800,150 L0,150 Z" />
+    <path
+        android:fillColor="#2C160B"
+        android:pathData="M0,150 L800,150 L800,300 L0,300 Z" />
+    <path
+        android:fillColor="#4A2E1B"
+        android:pathData="M0,300 L800,300 L800,450 L0,450 Z" />
+    <path
+        android:fillColor="#2C160B"
+        android:pathData="M0,450 L800,450 L800,600 L0,600 Z" />
+
+    <!-- Table Edge Trim / Border -->
+    <path
+        android:strokeColor="#220F06"
+        android:strokeWidth="16"
+        android:pathData="M8,8 L792,8 L792,592 L8,592 Z" />
+    <path
+        android:strokeColor="#6B4226"
+        android:strokeWidth="4"
+        android:pathData="M16,16 L784,16 L784,584 L16,584 Z" />
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:strokeAlpha="0.5"
+        android:pathData="M24,24 L776,24 L776,576 L24,576 Z" />
+</vector>

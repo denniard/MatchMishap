@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Bowl Base -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M16,36 C16,48 48,48 48,36 L52,30 C54,26 50,24 44,24 L20,24 C14,24 10,26 12,30 Z" />
+    <path
+        android:fillColor="#F57C00"
+        android:pathData="M12,30 L52,30 L48,36 C48,46 16,46 16,36 Z" />
+
+    <!-- Chips / Snacks in Bowl -->
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M22,24 L32,12 L42,24 Z" />
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M28,22 L38,10 L48,22 Z" />
+</vector>

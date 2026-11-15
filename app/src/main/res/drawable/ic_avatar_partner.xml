@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background Circle -->
+    <path
+        android:fillColor="#0288D1"
+        android:pathData="M50,5 C74.8,5 95,25.2 95,50 C95,74.8 74.8,95 50,95 C25.2,95 5,74.8 5,50 C5,25.2 25.2,5 50,5 Z" />
+
+    <!-- Headset Visor / Hair -->
+    <path
+        android:strokeColor="#FFEA00"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M28,50 C28,30 72,30 72,50" />
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M35,32 C45,22 55,22 65,32 L60,40 L40,40 Z" />
+
+    <!-- Face -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M32,45 C32,38 68,38 68,45 C68,68 32,68 32,45 Z" />
+
+    <!-- Friendly Eyes & Smile -->
+    <path
+        android:fillColor="#1A237E"
+        android:pathData="M42,50 C44,50 45,52 45,54 C45,56 44,58 42,58 C40,58 39,56 39,54 C39,52 40,50 42,50 Z" />
+    <path
+        android:fillColor="#1A237E"
+        android:pathData="M58,50 C60,50 61,52 61,54 C61,56 60,58 58,58 C56,58 55,56 55,54 C55,52 56,50 58,50 Z" />
+    <path
+        android:strokeColor="#1A237E"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M43,66 Q50,72 57,66" />
+</vector>

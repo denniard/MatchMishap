@@ -1,0 +1,49 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="300dp"
+    android:viewportWidth="200"
+    android:viewportHeight="300">
+
+    <!-- Rich Purple Card Pattern Background -->
+    <path
+        android:fillColor="#28114A"
+        android:pathData="M0,0 L200,0 L200,300 L0,300 Z" />
+
+    <!-- Geometric Diamond Grid Pattern -->
+    <path
+        android:fillColor="#3B1E66"
+        android:fillAlpha="0.6"
+        android:pathData="M100,-20 L220,100 L100,220 L-20,100 Z" />
+    <path
+        android:fillColor="#1B0A35"
+        android:fillAlpha="0.7"
+        android:pathData="M100,100 L220,220 L100,340 L-20,220 Z" />
+
+    <!-- Repeating Card Suits Silhouette (Spade, Heart, Diamond, Club) -->
+    <!-- Spade -->
+    <path
+        android:fillColor="#FFD700"
+        android:fillAlpha="0.15"
+        android:pathData="M40,50 C40,42 45,36 50,36 C55,36 60,42 60,50 C60,56 55,60 52,62 L54,72 L46,72 L48,62 C45,60 40,56 40,50 Z" />
+    <!-- Heart -->
+    <path
+        android:fillColor="#FF5722"
+        android:fillAlpha="0.15"
+        android:pathData="M150,50 C150,44 144,38 138,38 C132,38 128,44 128,50 C128,58 138,66 138,66 C138,66 148,58 148,50 Z" />
+    <!-- Diamond -->
+    <path
+        android:fillColor="#00E5FF"
+        android:fillAlpha="0.15"
+        android:pathData="M50,150 L62,165 L50,180 L38,165 Z" />
+    <!-- Club -->
+    <path
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.15"
+        android:pathData="M138,155 C132,155 128,159 128,165 C128,171 133,174 136,176 L134,184 L142,184 L140,176 C143,174 148,171 148,165 C148,159 144,155 138,155 Z" />
+
+    <!-- Center Emblem Star -->
+    <path
+        android:fillColor="#FFD700"
+        android:fillAlpha="0.25"
+        android:pathData="M100,120 L106,135 L122,137 L110,148 L114,164 L100,155 L86,164 L90,148 L78,137 L94,135 Z" />
+</vector>

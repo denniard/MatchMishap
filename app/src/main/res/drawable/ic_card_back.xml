@@ -1,0 +1,144 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="133dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="300">
+
+    <!-- Card Outer Base (Rich Purple) -->
+    <path
+        android:fillColor="#28114A"
+        android:pathData="M12,0 L188,0 C194.627,0 200,5.373 200,12 L200,288 C200,294.627 194.627,300 188,300 L12,300 C5.373,300 0,294.627 0,288 L0,12 C0,5.373 5.373,0 12,0 Z" />
+
+    <!-- Outer Gold Border -->
+    <path
+        android:strokeColor="#FFD700"
+        android:strokeWidth="3"
+        android:fillColor="#000000"
+        android:fillAlpha="0"
+        android:pathData="M10,4 L190,4 C195.5,4 196,9.5 196,12 L196,288 C196,290.5 195.5,296 190,296 L10,296 C4.5,296 4,290.5 4,288 L4,12 C4,9.5 4.5,4 10,4 Z" />
+
+    <!-- Geometric Diamond Grid Pattern -->
+    <path
+        android:fillColor="#3B1E66"
+        android:fillAlpha="0.65"
+        android:pathData="M100,-20 L240,100 L100,220 L-40,100 Z" />
+    <path
+        android:fillColor="#1B0A35"
+        android:fillAlpha="0.75"
+        android:pathData="M100,100 L240,220 L100,360 L-40,220 Z" />
+
+    <!-- Inner Decorative Border / Frame -->
+    <path
+        android:fillColor="#16082A"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5"
+        android:pathData="M18,18 L182,18 C185.3,18 188,20.7 188,24 L188,276 C188,279.3 185.3,282 182,282 L18,282 C14.7,282 12,279.3 12,276 L12,24 C12,20.7 14.7,18 18,18 Z" />
+
+    <!-- Card Suits Silhouettes in corners -->
+    <!-- Spade Top Left -->
+    <path
+        android:fillColor="#FFD700"
+        android:fillAlpha="0.2"
+        android:pathData="M35,45 C35,40 38,36 43,36 C48,36 51,40 51,45 C51,49 48,52 45,53 L47,61 L39,61 L41,53 C38,52 35,49 35,45 Z" />
+    <!-- Heart Top Right -->
+    <path
+        android:fillColor="#FF5722"
+        android:fillAlpha="0.2"
+        android:pathData="M165,45 C165,40 161,36 156,36 C151,36 147,40 147,45 C147,51 156,58 156,58 C156,58 165,51 165,45 Z" />
+    <!-- Diamond Bottom Left -->
+    <path
+        android:fillColor="#00E5FF"
+        android:fillAlpha="0.2"
+        android:pathData="M43,240 L53,252 L43,264 L33,252 Z" />
+    <!-- Club Bottom Right -->
+    <path
+        android:fillColor="#4CAF50"
+        android:fillAlpha="0.2"
+        android:pathData="M156,238 C151,238 147,242 147,247 C147,252 151,255 154,257 L152,264 L160,264 L158,257 C161,255 165,252 165,247 C165,242 161,238 156,238 Z" />
+
+    <!-- Central Logo Badge Container -->
+    <path
+        android:fillColor="#0D041A"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="2"
+        android:pathData="M35,110 C35,102 41,96 49,96 L151,96 C159,96 165,102 165,110 L165,190 C165,198 159,204 151,204 L49,204 C41,204 35,198 35,190 Z" />
+
+    <!-- Center Badge Inner Glow -->
+    <path
+        android:fillColor="#241243"
+        android:pathData="M39,114 C39,108 43,104 49,104 L151,104 C157,104 161,108 161,114 L161,186 C161,192 157,196 151,196 L49,196 C43,196 39,192 39,186 Z" />
+
+    <!-- Sparkles / Yellow Stars -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M46,112 L48,117 L53,119 L48,121 L46,126 L44,121 L39,119 L44,117 Z" />
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M154,112 L155,116 L159,117 L155,118 L154,122 L153,118 L149,117 L153,116 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M52,185 L54,188 L57,189 L54,190 L52,193 L50,190 L47,189 L50,188 Z" />
+
+    <!-- Top Star Emblem -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M100,75 L103,82 L110,83 L105,88 L106,95 L100,91 L94,95 L95,88 L90,83 L97,82 Z" />
+
+    <!-- "MATCH" Text (White) -->
+    <!-- M -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52,120 L58,120 L61,130 L64,120 L70,120 L70,140 L65,140 L65,128 L62,137 L60,137 L57,128 L57,140 L52,140 Z" />
+    <!-- A -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M74,120 L81,120 L84,130 L87,120 L94,120 L94,140 L89,140 L89,129 L87,137 L81,137 L79,129 L79,140 L74,140 Z" />
+    <!-- T -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M98,120 L114,120 L114,125 L108,125 L108,140 L104,140 L104,125 L98,125 Z" />
+    <!-- C -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M118,120 L133,120 L133,125 L123,125 L123,130 L132,130 L132,135 L123,135 L123,140 L118,140 Z" />
+    <!-- H -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M137,120 L142,120 L142,128 L146,128 L146,120 L151,120 L151,140 L146,140 L146,132 L142,132 L142,140 L137,140 Z" />
+
+    <!-- Ampersand & (Orange) -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M100,145 C97,145 95,147 95,150 C95,153 99,153 101,156 C103,158 101,161 97,161 C94,161 92,159 92,157 L95,155 C95,157 96,158 97,158 C99,158 100,156 99,154 C98,151 93,151 93,149 C93,146 96,143 100,143 C104,143 107,145 107,148 L104,148 C104,146 102,145 100,145 Z" />
+
+    <!-- MISHAP (White) -->
+    <!-- M -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,165 L55,165 L58,173 L61,165 L66,165 L66,183 L62,183 L62,173 L59,181 L57,181 L54,173 L54,183 L50,183 Z" />
+    <!-- I -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,165 L74,165 L74,183 L70,183 Z" />
+    <!-- S -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M78,165 L91,165 L91,170 L83,170 L83,173 L90,173 L90,183 L78,183 L78,178 L86,178 L86,175 L78,175 Z" />
+    <!-- H -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M95,165 L99,165 L99,172 L103,172 L103,165 L107,165 L107,183 L103,183 L103,176 L99,176 L99,183 L95,183 Z" />
+    <!-- A -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M111,165 L118,165 L121,173 L124,165 L131,165 L131,183 L126,183 L126,173 L124,181 L118,181 L116,173 L116,183 L111,183 Z" />
+    <!-- P -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M135,165 L147,165 L147,174 L135,174 Z M135,177 L147,177 L147,183 L135,183 Z" />
+
+    <!-- Gold Underline Banner -->
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M60,212 Q100,222 140,212 Q100,228 60,212 Z" />
+</vector>

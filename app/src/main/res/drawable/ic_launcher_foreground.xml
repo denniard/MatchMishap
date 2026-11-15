@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Top Logo Banner ("MATCH & MISHAP") -->
+    <!-- Banner Outer Shadow / Glow -->
+    <path
+        android:pathData="M21,24 h66 a5,5 0 0,1 5,5 v12 a5,5 0 0,1 -5,5 h-66 a5,5 0 0,1 -5,-5 v-12 a5,5 0 0,1 5,-5 z"
+        android:fillColor="#0D0418" />
+
+    <!-- Banner Inner Container -->
+    <path
+        android:pathData="M22,23 h64 a4,4 0 0,1 4,4 v12 a4,4 0 0,1 -4,4 h-64 a4,4 0 0,1 -4,-4 v-12 a4,4 0 0,1 4,-4 z"
+        android:fillColor="#1B0A2E"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="1.5" />
+
+    <!-- Gold Stars on Left and Right of Banner -->
+    <!-- Left Gold Star -->
+    <path
+        android:pathData="M25,30 L26.2,32.4 L28.8,32.8 L26.9,34.6 L27.4,37.2 L25,36 L22.6,37.2 L23.1,34.6 L21.2,32.8 L23.8,32.4 Z"
+        android:fillColor="#FFD700" />
+    <!-- Right Gold Star -->
+    <path
+        android:pathData="M83,30 L84.2,32.4 L86.8,32.8 L84.9,34.6 L85.4,37.2 L83,36 L80.6,37.2 L81.1,34.6 L79.2,32.8 L81.8,32.4 Z"
+        android:fillColor="#FFD700" />
+
+    <!-- Logo Text: "MATCH & MISHAP" (Gold Vector Typography) -->
+    <!-- M -->
+    <path android:pathData="M31,37 V29 L33.5,33 L36,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <!-- A -->
+    <path android:pathData="M38,37 L40,29 L42,37 M38.6,34.5 H41.4" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <!-- T -->
+    <path android:pathData="M43.5,29 H47.5 M45.5,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- C -->
+    <path android:pathData="M51.5,31 A2,2 0 0,0 49,33 A2,2 0 0,0 51.5,35" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- H -->
+    <path android:pathData="M53,29 V37 M53,33 H56 M56,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- & -->
+    <path android:pathData="M58,36.5 L60,33.5 A1,1 0 0,0 58.5,32 A1,1 0 0,0 59,34.5 L61,37" android:strokeColor="#00E5FF" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- M -->
+    <path android:pathData="M62.5,37 V29 L65,33 L67.5,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <!-- I -->
+    <path android:pathData="M69.5,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- S -->
+    <path android:pathData="M74,30.2 A1.2,1.2 0 0,0 71.5,31 A1.2,1.2 0 0,0 74,34 A1.2,1.2 0 0,1 71.5,35.8" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- H -->
+    <path android:pathData="M75.5,29 V37 M75.5,33 H78.5 M78.5,29 V37" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" />
+    <!-- A -->
+    <path android:pathData="M80,37 L82,29 L84,37 M80.6,34.5 H83.4" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <!-- P -->
+    <path android:pathData="M85.5,37 V29 H88 A2,2 0 0,1 88,33 H85.5" android:strokeColor="#FFD700" android:strokeWidth="1.2" android:strokeLineCap="round" android:strokeLineJoin="round" />
+
+    <!-- Left Card: Teal 7 Card (Tilted ~ -12°) -->
+    <!-- Card Base & Shadow -->
+    <path
+        android:pathData="M24,47 L47,42 A3.5,3.5 0 0,1 51,45.5 L57,75 A3.5,3.5 0 0,1 53.5,79 L30.5,84 A3.5,3.5 0 0,1 26.5,80.5 L20.5,51 A3.5,3.5 0 0,1 24,47 Z"
+        android:fillColor="#00B4D8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.8" />
+    <!-- Card Inner White Oval Accent -->
+    <path
+        android:pathData="M31,54 C35,53 43,51 47,58 C51,65 44,69 40,70 C36,71 28,73 24,66 C20,59 27,55 31,54 Z"
+        android:fillColor="#FFFFFF" />
+    <!-- Card Number "7" in Teal -->
+    <path
+        android:pathData="M32,58 H43 L36.5,70"
+        android:strokeColor="#00B4D8"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Right Card: Orange U-Turn Card (Tilted ~ +12°) -->
+    <!-- Card Base & Shadow -->
+    <path
+        android:pathData="M61,42 L84,47 A3.5,3.5 0 0,1 87.5,51 L81.5,80.5 A3.5,3.5 0 0,1 77.5,84 L54.5,79 A3.5,3.5 0 0,1 51,75 L57,45.5 A3.5,3.5 0 0,1 61,42 Z"
+        android:fillColor="#FF8F00"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.8" />
+    <!-- Card Inner White Oval Accent -->
+    <path
+        android:pathData="M61,58 C65,51 73,53 77,54 C81,55 88,59 84,66 C80,73 72,71 68,70 C64,69 57,65 61,58 Z"
+        android:fillColor="#FFFFFF" />
+    <!-- U-Turn / Reverse Arrow Symbol in Orange -->
+    <!-- Outer Arrow Arc -->
+    <path
+        android:pathData="M63,60 A5.5,5.5 0 0,1 72,60 M73,65 A5.5,5.5 0 0,1 64,65"
+        android:strokeColor="#FF8F00"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+    <!-- Top Left Arrowhead -->
+    <path
+        android:pathData="M61,61.5 L64.5,58.5 L65.5,62 Z"
+        android:fillColor="#FF8F00" />
+    <!-- Bottom Right Arrowhead -->
+    <path
+        android:pathData="M75,63.5 L71.5,66.5 L70.5,63 Z"
+        android:fillColor="#FF8F00" />
+
+</vector>

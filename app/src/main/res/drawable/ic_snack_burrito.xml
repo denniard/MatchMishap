@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Foil Wrapper -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M12,40 L40,12 L52,24 L24,52 Z" />
+    <path
+        android:fillColor="#CFD8DC"
+        android:pathData="M16,36 L36,16 L44,24 L24,44 Z" />
+
+    <!-- Burrito Filling (Lettuce/Meat peek at end) -->
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M40,12 L52,24 L48,28 L36,16 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M44,16 L49,21 L47,23 L42,18 Z" />
+</vector>

@@ -1,0 +1,76 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="120dp"
+    android:viewportWidth="320"
+    android:viewportHeight="120">
+
+    <!-- Background Badge -->
+    <path
+        android:fillColor="#120822"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="2.5"
+        android:pathData="M16,20 C16,12 22,6 30,6 L290,6 C298,6 304,12 304,20 L304,100 C304,108 298,114 290,114 L30,114 C22,114 16,108 16,100 Z" />
+
+    <!-- Inner Glow / Highlight -->
+    <path
+        android:fillColor="#2A1B4E"
+        android:pathData="M22,24 C22,18 26,14 32,14 L288,14 C294,14 298,18 298,24 L298,96 C298,102 294,106 288,106 L32,106 C26,106 22,102 22,96 Z" />
+
+    <!-- Sparkles / Stars -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M35,35 L38,43 L46,46 L38,49 L35,57 L32,49 L24,46 L32,43 Z" />
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M285,35 L287,41 L293,43 L287,45 L285,51 L283,45 L277,43 L283,41 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M42,85 L44,89 L48,90 L44,91 L42,95 L40,91 L36,90 L40,89 Z" />
+
+    <!-- Stylized MATCH Text Paths -->
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M52,38 L60,38 L65,52 L70,38 L78,38 L78,65 L71,65 L71,48 L67,61 L63,61 L59,48 L59,65 L52,65 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M84,38 L99,38 L99,44 L91,44 L91,49 L98,49 L98,54 L91,54 L91,59 L99,59 L99,65 L84,65 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M105,38 L113,38 L117,50 L121,38 L129,38 L129,65 L122,65 L122,50 L119,60 L115,60 L112,50 L112,65 L105,65 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M135,38 L150,38 L150,44 L142,44 L142,49 L149,49 L149,54 L142,54 L142,65 L135,65 Z" />
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M156,38 L171,38 L171,44 L163,44 L163,49 L170,49 L170,54 L163,54 L163,59 L171,59 L171,65 L156,65 Z" />
+
+    <!-- Ampersand & -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M182,42 C178,42 176,45 176,49 C176,53 182,53 184,57 C186,60 184,64 179,64 C175,64 173,61 173,59 L176,57 C176,59 177,61 179,61 C181,61 182,59 181,56 C180,53 174,53 174,49 C174,44 178,40 182,40 C186,40 189,43 189,47 L186,47 C186,44 184,42 182,42 Z" />
+
+    <!-- Stylized MISHAP Text Paths -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M197,38 L204,38 L209,52 L214,38 L221,38 L221,65 L214,65 L214,48 L210,61 L206,61 L202,48 L202,65 L197,65 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M227,38 L234,38 L234,65 L227,65 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M240,38 L255,38 L255,44 L247,44 L247,49 L254,49 L254,54 L247,54 L247,65 L240,65 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M261,38 L268,38 L268,54 L275,38 L283,38 L275,54 L283,65 L275,65 L270,54 L268,58 L268,65 L261,65 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M289,38 L304,38 L304,44 L296,44 L296,49 L303,49 L303,54 L296,54 L296,59 L304,59 L304,65 L289,65 Z" />
+
+    <!-- Curved Yellow Underline Banner -->
+    <path
+        android:fillColor="#FFEA00"
+        android:pathData="M60,78 Q160,98 260,78 Q160,112 60,78 Z" />
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M70,81 Q160,99 250,81 Q160,107 70,81 Z" />
+</vector>

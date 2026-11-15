@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+
+    <!-- Snack Cup / Container -->
+    <path
+        android:fillColor="#E53935"
+        android:pathData="M20,20 L44,20 L48,52 L16,52 Z" />
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M20,20 L44,20 L42,26 L22,26 Z" />
+
+    <!-- Pretzels / Snacks inside -->
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M26,16 C26,10 38,10 38,16 C38,22 26,22 26,16 Z" />
+    <path
+        android:strokeColor="#5D4037"
+        android:strokeWidth="2.5"
+        android:pathData="M28,14 L36,18 M36,14 L28,18" />
+</vector>

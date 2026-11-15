@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Solid Dark Purple Base (#280F3B) -->
+    <path
+        android:pathData="M0,0h108v108h-108z"
+        android:fillColor="#280F3B" />
+
+    <!-- Subtle Radial Dark Purple Glow (#36164F to #280F3B) -->
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="54"
+                android:centerY="54"
+                android:gradientRadius="54"
+                android:type="radial">
+                <item android:color="#36164F" android:offset="0.0" />
+                <item android:color="#280F3B" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Card Pattern: Subtle Card Silhouettes -->
+    <!-- Top Left Card Silhouette -->
+    <path
+        android:pathData="M12,14 h18 a3,3 0 0,1 3,3 v26 a3,3 0 0,1 -3,3 h-18 a3,3 0 0,1 -3,-3 v-26 a3,3 0 0,1 3,-3 z"
+        android:fillColor="#36164F"
+        android:strokeColor="#4E1F73"
+        android:strokeWidth="1" />
+
+    <!-- Top Right Card Silhouette -->
+    <path
+        android:pathData="M75,12 h18 a3,3 0 0,1 3,3 v26 a3,3 0 0,1 -3,3 h-18 a3,3 0 0,1 -3,-3 v-26 a3,3 0 0,1 3,-3 z"
+        android:fillColor="#301345"
+        android:strokeColor="#421A61"
+        android:strokeWidth="1" />
+
+    <!-- Bottom Left Card Silhouette -->
+    <path
+        android:pathData="M15,68 h18 a3,3 0 0,1 3,3 v26 a3,3 0 0,1 -3,3 h-18 a3,3 0 0,1 -3,-3 v-26 a3,3 0 0,1 3,-3 z"
+        android:fillColor="#301345"
+        android:strokeColor="#421A61"
+        android:strokeWidth="1" />
+
+    <!-- Bottom Right Card Silhouette -->
+    <path
+        android:pathData="M76,66 h18 a3,3 0 0,1 3,3 v26 a3,3 0 0,1 -3,3 h-18 a3,3 0 0,1 -3,-3 v-26 a3,3 0 0,1 3,-3 z"
+        android:fillColor="#36164F"
+        android:strokeColor="#4E1F73"
+        android:strokeWidth="1" />
+
+    <!-- Center Card Pattern Background Diamond Accents -->
+    <path
+        android:pathData="M54,10 L60,18 L54,26 L48,18 Z"
+        android:fillColor="#4A1E6D" />
+    <path
+        android:pathData="M54,82 L60,90 L54,98 L48,90 Z"
+        android:fillColor="#4A1E6D" />
+    <path
+        android:pathData="M14,54 L22,46 L30,54 L22,62 Z"
+        android:fillColor="#3D185B" />
+    <path
+        android:pathData="M94,54 L86,46 L78,54 L86,62 Z"
+        android:fillColor="#3D185B" />
+</vector>
