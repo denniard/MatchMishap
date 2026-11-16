@@ -27,21 +27,24 @@ object DeckManager {
                 cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.NUMBER, numberValue = num))
             }
 
-            // PAUSE Cards (2 per color)
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.PAUSE))
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.PAUSE))
+            // PAUSE Cards (Buffed: 3 per color)
+            repeat(3) {
+                cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.PAUSE))
+            }
 
-            // U_TURN Cards (2 per color)
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.U_TURN))
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.U_TURN))
+            // U_TURN Cards (Buffed: 3 per color)
+            repeat(3) {
+                cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.U_TURN))
+            }
 
-            // DOUBLE_UP Cards (2 per color)
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.DOUBLE_UP))
-            cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.DOUBLE_UP))
+            // DOUBLE_UP Cards (Buffed: 3 per color)
+            repeat(3) {
+                cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.DOUBLE_UP))
+            }
         }
 
-        // COLOR_CHAOS Wild Cards (8 cards)
-        for (i in 1..8) {
+        // COLOR_CHAOS Wild Cards (Buffed: 10 cards)
+        repeat(10) {
             cards.add(Card(id = UUID.randomUUID().toString(), color = CardColor.WILD, type = CardType.COLOR_CHAOS))
         }
 
@@ -69,7 +72,6 @@ object DeckManager {
                 drawnCards.add(currentDrawPile.removeAt(0))
                 needed--
             } else {
-                // If draw pile is empty, reshuffle discard pile except top card
                 if (currentDiscardPile.size > 1) {
                     val topCard = currentDiscardPile.removeAt(currentDiscardPile.lastIndex)
                     val toReshuffle = currentDiscardPile.shuffled()
@@ -77,7 +79,6 @@ object DeckManager {
                     currentDiscardPile.clear()
                     currentDiscardPile.add(topCard)
                 } else {
-                    // No more cards available in deck or discard pile
                     break
                 }
             }

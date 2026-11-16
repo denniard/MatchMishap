@@ -1,40 +1,38 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="200dp"
-    android:height="150dp"
+    android:width="800dp"
+    android:height="450dp"
     android:viewportWidth="800"
-    android:viewportHeight="600">
+    android:viewportHeight="450">
 
-    <!-- Rich Wood Table Base Background -->
+    <!-- 1. Rich Warm Wood Base -->
     <path
-        android:fillColor="#3D2314"
-        android:pathData="M0,0 L800,0 L800,600 L0,600 Z" />
+        android:fillColor="#3A1E11"
+        android:pathData="M0,0 L800,0 L800,450 L0,450 Z" />
 
-    <!-- Wood Grain Planks / Gradient Highlights -->
-    <path
-        android:fillColor="#4A2E1B"
-        android:pathData="M0,0 L800,0 L800,150 L0,150 Z" />
-    <path
-        android:fillColor="#2C160B"
-        android:pathData="M0,150 L800,150 L800,300 L0,300 Z" />
-    <path
-        android:fillColor="#4A2E1B"
-        android:pathData="M0,300 L800,300 L800,450 L0,450 Z" />
-    <path
-        android:fillColor="#2C160B"
-        android:pathData="M0,450 L800,450 L800,600 L0,600 Z" />
+    <!-- 2. Wood Grain Planks -->
+    <path android:fillColor="#2D160B" android:pathData="M0,0 L800,0 L800,56 L0,56 Z" />
+    <path android:fillColor="#432514" android:pathData="M0,56 L800,56 L800,112 L0,112 Z" />
+    <path android:fillColor="#341A0D" android:pathData="M0,112 L800,112 L800,168 L0,168 Z" />
+    <path android:fillColor="#4A2B18" android:pathData="M0,168 L800,168 L800,225 L0,225 Z" />
+    <path android:fillColor="#2F170C" android:pathData="M0,225 L800,225 L800,281 L0,281 Z" />
+    <path android:fillColor="#452716" android:pathData="M0,281 L800,281 L800,337 L0,337 Z" />
+    <path android:fillColor="#381D0F" android:pathData="M0,337 L800,337 L800,393 L0,393 Z" />
+    <path android:fillColor="#2B140A" android:pathData="M0,393 L800,393 L800,450 L0,450 Z" />
 
-    <!-- Table Edge Trim / Border -->
+    <!-- 3. Wood Knots using valid Cubic Bezier Curves -->
     <path
-        android:strokeColor="#220F06"
-        android:strokeWidth="16"
-        android:pathData="M8,8 L792,8 L792,592 L8,592 Z" />
+        android:fillColor="#230E06"
+        android:fillAlpha="0.6"
+        android:pathData="M 180,30 C 213,30 240,35 240,42 C 240,49 213,54 180,54 C 147,54 120,49 120,42 C 120,35 147,30 180,30 Z" />
     <path
-        android:strokeColor="#6B4226"
-        android:strokeWidth="4"
-        android:pathData="M16,16 L784,16 L784,584 L16,584 Z" />
+        android:fillColor="#230E06"
+        android:fillAlpha="0.6"
+        android:pathData="M 640,360 C 673,360 700,365 700,372 C 700,379 673,384 640,384 C 607,384 580,379 580,372 C 580,365 607,360 640,360 Z" />
+
+    <!-- 4. Dark Table Border Vignette -->
     <path
-        android:strokeColor="#FFD700"
-        android:strokeWidth="1.5"
-        android:strokeAlpha="0.5"
-        android:pathData="M24,24 L776,24 L776,576 L24,576 Z" />
+        android:fillColor="#150803"
+        android:fillAlpha="0.25"
+        android:pathData="M0,0 L800,0 L800,20 L0,20 Z M0,430 L800,430 L800,450 L0,450 Z M0,0 L20,0 L20,450 L0,450 Z M780,0 L800,0 L800,450 L780,450 Z" />
+
 </vector>

@@ -84,17 +84,17 @@ fun CentralTableView(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
             .padding(2.dp)
-            .offset(y = (-16).dp) // Shifted a bit higher up
+            .offset(y = (-14).dp)
     ) {
         StatusBanner(statusMessage = statusMessage, isHumanTurn = isHumanTurn)
 
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .width(260.dp)
-                .height(135.dp)
+                .width(290.dp)
+                .height(140.dp)
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
                 val w = size.width
@@ -124,24 +124,37 @@ fun CentralTableView(
                 contentDescription = playDirection.name,
                 tint = Color(0xFFFF9800),
                 modifier = Modifier
-                    .size(220.dp)
+                    .size(230.dp)
                     .rotate(directionAngle)
                     .clip(CircleShape)
             )
 
+            // Piles Container with Perfect Translucent Slot Outlines for Draw, Discard, and Color Wheel
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                // DRAW PILE (Bigger: 70 x 105 dp)
+                // 1. DRAW PILE SLOT
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.onGloballyPositioned(onDrawPilePositioned)
                 ) {
-                    Box(contentAlignment = Alignment.BottomCenter) {
+                    Box(
+                        contentAlignment = Alignment.BottomCenter,
+                        modifier = Modifier
+                            .background(
+                                color = Color.Black.copy(alpha = 0.25f),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .border(
+                                border = androidx.compose.foundation.BorderStroke(2.dp, Color.White.copy(alpha = 0.35f)),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .padding(3.dp)
+                    ) {
                         CardBackView(
-                            width = 70.dp,
-                            height = 105.dp,
+                            width = 64.dp,
+                            height = 96.dp,
                             label = "DRAW",
                             onClick = if (isHumanTurn && !hasDrawnCardThisTurn) onDrawCard else null
                         )
@@ -166,7 +179,7 @@ fun CentralTableView(
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(3.dp))
 
                     Button(
                         onClick = onDrawCard,
@@ -189,23 +202,34 @@ fun CentralTableView(
                     }
                 }
 
-                // ACTIVE COLOR INDICATOR WHEEL (Center)
-                ActiveColorIndicatorWheel(activeColor = activeColor)
-
-                // DISCARD PILE (Bigger: 70 x 105 dp, with overrideColor = activeColor so wild cards show selected color)
+                // 2. DISCARD PILE SLOT
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.onGloballyPositioned(onDiscardPilePositioned)
                 ) {
-                    CardView(
-                        card = topCard,
-                        isPlayable = false,
-                        width = 70.dp,
-                        height = 105.dp,
-                        overrideColor = activeColor
-                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .background(
+                                color = Color.Black.copy(alpha = 0.25f),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .border(
+                                border = androidx.compose.foundation.BorderStroke(2.dp, Color.White.copy(alpha = 0.35f)),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .padding(3.dp)
+                    ) {
+                        CardView(
+                            card = topCard,
+                            isPlayable = false,
+                            width = 64.dp,
+                            height = 96.dp,
+                            overrideColor = activeColor
+                        )
+                    }
 
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(3.dp))
 
                     Text(
                         text = "DISCARD",
@@ -215,6 +239,23 @@ fun CentralTableView(
                             color = Color.LightGray
                         )
                     )
+                }
+
+                // 3. ACTIVE COLOR INDICATOR WHEEL SLOT
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .background(
+                            color = Color.Black.copy(alpha = 0.25f),
+                            shape = CircleShape
+                        )
+                        .border(
+                            border = androidx.compose.foundation.BorderStroke(2.dp, Color.White.copy(alpha = 0.35f)),
+                            shape = CircleShape
+                        )
+                        .padding(4.dp)
+                ) {
+                    ActiveColorIndicatorWheel(activeColor = activeColor)
                 }
             }
         }
@@ -254,7 +295,7 @@ private fun ActiveColorIndicatorWheel(activeColor: CardColor) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(40.dp)
+                .size(44.dp)
                 .shadow(4.dp, CircleShape)
                 .clip(CircleShape)
                 .background(
@@ -276,7 +317,7 @@ private fun ActiveColorIndicatorWheel(activeColor: CardColor) {
         ) {
             Box(
                 modifier = Modifier
-                    .size(14.dp)
+                    .size(15.dp)
                     .clip(CircleShape)
                     .background(Color.White.copy(alpha = 0.9f))
             )
