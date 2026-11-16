@@ -94,14 +94,14 @@ object GameEngine {
             )
         }
 
-        // If card is Color Chaos and no wild color chosen yet
-        if ((card.type == CardType.COLOR_CHAOS || card.color.isWild) && chosenWildColor == null) {
+        // If card is Color Chaos / Wild +4 and no wild color chosen yet
+        if ((card.type == CardType.COLOR_CHAOS || card.type == CardType.PLUS_FOUR || card.color.isWild) && chosenWildColor == null) {
             return currentState.copy(
                 players = updatedPlayers,
                 discardPile = newDiscard,
                 isWaitingForColorChoice = true,
                 lastPlayedCard = card,
-                statusMessage = "${currentP.name} played Color Chaos! Pick a color."
+                statusMessage = "${currentP.name} played ${card.displayTitle}! Pick a color."
             )
         }
 
@@ -116,6 +116,12 @@ object GameEngine {
                 val wildCol = chosenWildColor ?: CardColor.TEAL
                 nextActiveColor = wildCol
                 actionText = "played Color Chaos and set color to ${wildCol.displayName}"
+            }
+            CardType.PLUS_FOUR -> {
+                val wildCol = chosenWildColor ?: CardColor.TEAL
+                nextActiveColor = wildCol
+                nextPenalty += 4
+                actionText = "played Wild +4 and set color to ${wildCol.displayName} (+4 penalty is now $nextPenalty!)"
             }
             CardType.DOUBLE_UP -> {
                 nextPenalty += 2

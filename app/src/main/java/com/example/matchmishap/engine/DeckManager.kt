@@ -27,23 +27,28 @@ object DeckManager {
                 cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.NUMBER, numberValue = num))
             }
 
-            // PAUSE Cards (Buffed: 3 per color)
-            repeat(3) {
+            // PAUSE Cards (4 per color)
+            repeat(4) {
                 cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.PAUSE))
             }
 
-            // U_TURN Cards (Buffed: 3 per color)
-            repeat(3) {
+            // U_TURN Cards (4 per color)
+            repeat(4) {
                 cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.U_TURN))
             }
 
-            // DOUBLE_UP Cards (Buffed: 3 per color)
-            repeat(3) {
+            // DOUBLE_UP Cards (+2) (4 per color)
+            repeat(4) {
                 cards.add(Card(id = UUID.randomUUID().toString(), color = color, type = CardType.DOUBLE_UP))
             }
         }
 
-        // COLOR_CHAOS Wild Cards (Buffed: 10 cards)
+        // PLUS_FOUR Wild Cards (+4) (10 cards)
+        repeat(10) {
+            cards.add(Card(id = UUID.randomUUID().toString(), color = CardColor.WILD, type = CardType.PLUS_FOUR))
+        }
+
+        // COLOR_CHAOS Wild Cards (10 cards)
         repeat(10) {
             cards.add(Card(id = UUID.randomUUID().toString(), color = CardColor.WILD, type = CardType.COLOR_CHAOS))
         }

@@ -297,6 +297,10 @@ private fun CardContent(
                     theme = theme,
                     cardWidth = cardWidth
                 )
+                CardType.PLUS_FOUR -> PlusFourCardCenter(
+                    theme = theme,
+                    cardWidth = cardWidth
+                )
                 CardType.PAUSE -> PauseCardCenter(
                     theme = theme,
                     cardWidth = cardWidth
@@ -567,6 +571,48 @@ private fun PillBanner(
 }
 
 @Composable
+private fun PlusFourCardCenter(
+    theme: CardThemeColors,
+    cardWidth: Dp
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxHeight().padding(vertical = 4.dp)
+    ) {
+        Text(
+            text = "+4",
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.Black,
+                fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
+                color = Color.White,
+                fontFamily = FontFamily.SansSerif
+            )
+        )
+
+        PillBanner(text = "PLUS FOUR", pillColor = theme.pillColor, cardWidth = cardWidth)
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_character_mischief),
+            contentDescription = null,
+            modifier = Modifier.size(if (cardWidth > 80.dp) 32.dp else 22.dp)
+        )
+
+        PillBanner(text = "PLUS FOUR", pillColor = theme.pillColor, cardWidth = cardWidth)
+
+        Text(
+            text = "+4",
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.Black,
+                fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
+                color = Color.White,
+                fontFamily = FontFamily.SansSerif
+            )
+        )
+    }
+}
+
+@Composable
 private fun CornerBadgeContent(
     card: Card,
     modifier: Modifier = Modifier
@@ -578,6 +624,7 @@ private fun CornerBadgeContent(
         val badgeText = when (card.type) {
             CardType.NUMBER -> "${card.numberValue ?: 0}"
             CardType.DOUBLE_UP -> "+2"
+            CardType.PLUS_FOUR -> "+4"
             CardType.PAUSE -> "||"
             CardType.U_TURN -> "↺"
             CardType.COLOR_CHAOS -> "★"

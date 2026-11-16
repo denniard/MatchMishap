@@ -1,49 +1,120 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="200dp"
-    android:height="300dp"
-    android:viewportWidth="200"
-    android:viewportHeight="300">
+    android:width="1000dp"
+    android:height="1000dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="1000">
 
-    <!-- Rich Purple Card Pattern Background -->
+    <!-- Deep Midnight Purple Base Background -->
     <path
-        android:fillColor="#28114A"
-        android:pathData="M0,0 L200,0 L200,300 L0,300 Z" />
+        android:fillColor="#2A1045"
+        android:pathData="M0,0 L1000,0 L1000,1000 L0,1000 Z" />
 
-    <!-- Geometric Diamond Grid Pattern -->
-    <path
-        android:fillColor="#3B1E66"
-        android:fillAlpha="0.6"
-        android:pathData="M100,-20 L220,100 L100,220 L-20,100 Z" />
-    <path
-        android:fillColor="#1B0A35"
-        android:fillAlpha="0.7"
-        android:pathData="M100,100 L220,220 L100,340 L-20,220 Z" />
+    <!-- 1. Floating Card Silhouettes -->
+    <!-- Card 1 -->
+    <group android:pivotX="200" android:pivotY="210" android:rotation="-12">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 160,150 L 240,150 C 248,150 252,154 252,162 L 252,270 C 252,278 248,282 240,282 L 160,282 C 152,282 148,278 148,270 L 148,162 C 148,154 152,150 160,150 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 200,200 C 200,192 206,186 212,186 C 218,186 224,192 224,200 C 224,206 218,211 215,213 L 217,222 L 207,222 L 209,213 C 206,211 200,206 200,200 Z" />
+    </group>
 
-    <!-- Repeating Card Suits Silhouette (Spade, Heart, Diamond, Club) -->
-    <!-- Spade -->
-    <path
-        android:fillColor="#FFD700"
-        android:fillAlpha="0.15"
-        android:pathData="M40,50 C40,42 45,36 50,36 C55,36 60,42 60,50 C60,56 55,60 52,62 L54,72 L46,72 L48,62 C45,60 40,56 40,50 Z" />
-    <!-- Heart -->
-    <path
-        android:fillColor="#FF5722"
-        android:fillAlpha="0.15"
-        android:pathData="M150,50 C150,44 144,38 138,38 C132,38 128,44 128,50 C128,58 138,66 138,66 C138,66 148,58 148,50 Z" />
-    <!-- Diamond -->
-    <path
-        android:fillColor="#00E5FF"
-        android:fillAlpha="0.15"
-        android:pathData="M50,150 L62,165 L50,180 L38,165 Z" />
-    <!-- Club -->
-    <path
-        android:fillColor="#4CAF50"
-        android:fillAlpha="0.15"
-        android:pathData="M138,155 C132,155 128,159 128,165 C128,171 133,174 136,176 L134,184 L142,184 L140,176 C143,174 148,171 148,165 C148,159 144,155 138,155 Z" />
+    <!-- Card 2 -->
+    <group android:pivotX="530" android:pivotY="80" android:rotation="8">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 490,20 L 570,20 C 578,20 582,24 582,32 L 582,140 C 582,148 578,152 570,152 L 490,152 C 482,152 478,148 478,140 L 478,32 C 478,24 482,20 490,20 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 530,60 L 545,86 L 530,112 L 515,86 Z" />
+    </group>
 
-    <!-- Center Emblem Star -->
-    <path
-        android:fillColor="#FFD700"
-        android:fillAlpha="0.25"
-        android:pathData="M100,120 L106,135 L122,137 L110,148 L114,164 L100,155 L86,164 L90,148 L78,137 L94,135 Z" />
+    <!-- Card 3 -->
+    <group android:pivotX="450" android:pivotY="350" android:rotation="-18">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 400,280 L 500,280 C 508,280 512,284 512,292 L 512,420 C 512,428 508,432 500,432 L 400,432 C 392,432 388,428 388,420 L 388,292 C 388,284 392,280 400,280 Z" />
+        <path android:fillColor="#6B30A3" android:fillAlpha="0.6" android:pathData="M 430,380 Q 470,300 460,320 Q 440,360 430,380 Z" />
+    </group>
+
+    <!-- Card 4 -->
+    <group android:pivotX="760" android:pivotY="210" android:rotation="15">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 720,150 L 800,150 C 808,150 812,154 812,162 L 812,270 C 812,278 808,282 800,282 L 720,282 C 712,282 708,278 708,270 L 708,162 C 708,154 712,150 720,150 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 760,200 C 760,192 766,186 772,186 C 778,186 784,192 784,200 C 784,206 778,211 775,213 L 777,222 L 767,222 L 769,213 C 766,211 760,206 760,200 Z" />
+    </group>
+
+    <!-- Card 5 -->
+    <group android:pivotX="210" android:pivotY="460" android:rotation="-8">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 170,400 L 250,400 C 258,400 262,404 262,412 L 262,520 C 262,528 258,532 250,532 L 170,532 C 162,532 158,528 158,520 L 158,412 C 158,404 162,400 170,400 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 210,450 C 210,442 216,436 222,436 C 228,436 234,442 234,450 C 234,456 228,461 225,463 L 227,472 L 217,472 L 219,463 C 216,461 210,456 210,450 Z" />
+    </group>
+
+    <!-- Card 6 -->
+    <group android:pivotX="780" android:pivotY="460" android:rotation="10">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 740,400 L 820,400 C 828,400 832,404 832,412 L 832,520 C 832,528 828,532 820,532 L 740,532 C 732,532 728,528 728,520 L 728,412 C 728,404 732,400 740,400 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 780,450 C 780,442 786,436 792,436 C 798,436 804,442 804,450 C 804,456 798,461 795,463 L 797,472 L 787,472 L 789,463 C 786,461 780,456 780,450 Z" />
+    </group>
+
+    <!-- Card 7 -->
+    <group android:pivotX="450" android:pivotY="820" android:rotation="-14">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 400,750 L 500,750 C 508,750 512,754 512,762 L 512,890 C 512,898 508,902 500,902 L 400,902 C 392,902 388,898 388,890 L 388,762 C 388,754 392,750 400,750 Z" />
+        <path android:fillColor="#6B30A3" android:fillAlpha="0.6" android:pathData="M 430,850 Q 470,770 460,790 Q 440,830 430,850 Z" />
+    </group>
+
+    <!-- Card 8 -->
+    <group android:pivotX="210" android:pivotY="920" android:rotation="12">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 170,860 L 250,860 C 258,860 262,864 262,872 L 262,980 C 262,988 258,992 250,992 L 170,992 C 162,992 158,988 158,980 L 158,872 C 158,864 162,860 170,860 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 210,910 C 210,902 216,896 222,896 C 228,896 234,902 234,910 C 234,916 228,921 225,923 L 227,932 L 217,932 L 219,923 C 216,921 210,916 210,910 Z" />
+    </group>
+
+    <!-- Card 9 -->
+    <group android:pivotX="780" android:pivotY="920" android:rotation="-10">
+        <path
+            android:fillColor="#3D1861"
+            android:strokeColor="#522380"
+            android:strokeWidth="3"
+            android:pathData="M 740,860 L 820,860 C 828,860 832,864 832,872 L 832,980 C 832,988 828,992 820,992 L 740,992 C 732,992 728,988 728,980 L 728,872 C 728,864 732,860 740,860 Z" />
+        <path android:fillColor="#58278A" android:fillAlpha="0.6" android:pathData="M 780,910 C 780,902 786,896 792,896 C 798,896 804,902 804,910 C 804,916 798,921 795,923 L 797,932 L 787,932 L 789,923 C 786,921 780,916 780,910 Z" />
+    </group>
+
+    <!-- 2. Magic Potion Bubbles & Orbs -->
+    <path android:fillColor="#4D2078" android:fillAlpha="0.6" android:pathData="M 550,220 C 550,203.4 563.4,190 580,190 C 596.6,190 610,203.4 610,220 C 610,236.6 596.6,250 580,250 C 563.4,250 550,236.6 550,220 Z" />
+    <path android:fillColor="#4D2078" android:fillAlpha="0.6" android:pathData="M 260,80 C 260,66.7 270.7,56 284,56 C 297.3,56 308,66.7 308,80 C 308,93.3 297.3,104 284,104 C 270.7,104 260,93.3 260,80 Z" />
+    <path android:fillColor="#4D2078" android:fillAlpha="0.6" android:pathData="M 520,690 C 520,672.3 534.3,658 552,658 C 569.7,658 584,672.3 584,690 C 584,707.7 569.7,722 552,722 C 534.3,722 520,707.7 520,690 Z" />
+
+    <!-- 3. Scattered Magical Sparkles & 4-Pointed Stars -->
+    <path android:fillColor="#6F31A8" android:fillAlpha="0.7" android:pathData="M 680,210 L 683,222 L 695,225 L 683,228 L 680,240 L 677,228 L 665,225 L 677,222 Z" />
+    <path android:fillColor="#6F31A8" android:fillAlpha="0.7" android:pathData="M 110,210 L 113,222 L 125,225 L 113,228 L 110,240 L 107,228 L 95,225 L 107,222 Z" />
+    <path android:fillColor="#6F31A8" android:fillAlpha="0.7" android:pathData="M 580,760 L 583,772 L 595,775 L 583,778 L 580,790 L 577,778 L 565,775 L 577,772 Z" />
+    <path android:fillColor="#6F31A8" android:fillAlpha="0.7" android:pathData="M 100,780 L 103,792 L 115,795 L 103,798 L 100,810 L 97,798 L 85,795 L 97,792 Z" />
+    <path android:fillColor="#6F31A8" android:fillAlpha="0.7" android:pathData="M 900,390 L 903,402 L 915,405 L 903,408 L 900,420 L 897,408 L 885,405 L 897,402 Z" />
+
+    <!-- 4. Tiny Floating Magic Dots -->
+    <path android:fillColor="#622B94" android:fillAlpha="0.6" android:pathData="M 70,120 C 70,117.2 72.2,115 75,115 C 77.8,115 80,117.2 80,120 C 80,122.8 77.8,125 75,125 C 72.2,125 70,122.8 70,120 Z" />
+    <path android:fillColor="#622B94" android:fillAlpha="0.6" android:pathData="M 330,220 C 330,216.7 332.7,214 336,214 C 339.3,214 342,216.7 342,220 C 342,223.3 339.3,226 336,226 C 332.7,226 330,223.3 330,220 Z" />
+    <path android:fillColor="#622B94" android:fillAlpha="0.6" android:pathData="M 870,160 C 870,157.2 872.2,155 875,155 C 877.8,155 880,157.2 880,160 C 880,162.8 877.8,165 875,165 C 872.2,165 870,162.8 870,160 Z" />
+
 </vector>

@@ -33,6 +33,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.foundation.Image
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.example.matchmishap.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -84,12 +88,14 @@ fun SplashScreen(
     )
 
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xFF280F3B))
+        modifier = modifier.fillMaxSize()
     ) {
-        // Dark purple card-pattern background
-        SplashBackgroundPattern(modifier = Modifier.fillMaxSize())
+        Image(
+            painter = painterResource(id = R.drawable.bg_card_pattern),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
 
         Column(
             modifier = Modifier

@@ -12,12 +12,12 @@ data class Card(
      */
     fun canPlayOn(topCard: Card, activeColor: CardColor, currentPenalty: Int = 0): Boolean {
         if (currentPenalty > 0) {
-            // Stackable penalty rule: when there is an active penalty, only DOUBLE_UP cards can be stacked
-            return type == CardType.DOUBLE_UP
+            // Stackable penalty rule: when there is an active penalty, DOUBLE_UP (+2) and PLUS_FOUR (+4) can be stacked
+            return type == CardType.DOUBLE_UP || type == CardType.PLUS_FOUR
         }
 
-        // Color Chaos / Wild cards can always be played
-        if (type == CardType.COLOR_CHAOS || color == CardColor.WILD) {
+        // Color Chaos / Plus Four / Wild cards can always be played
+        if (type == CardType.COLOR_CHAOS || type == CardType.PLUS_FOUR || color == CardColor.WILD) {
             return true
         }
 
@@ -26,7 +26,7 @@ data class Card(
             return true
         }
 
-        // Action card matching type (e.g. Pause on Pause, U-Turn on U-Turn, Double Up on Double Up)
+        // Action card matching type
         if (type != CardType.NUMBER && type == topCard.type) {
             return true
         }
@@ -45,6 +45,7 @@ data class Card(
             CardType.PAUSE -> "${color.displayName} Pause"
             CardType.U_TURN -> "${color.displayName} U-Turn"
             CardType.DOUBLE_UP -> "${color.displayName} +2"
+            CardType.PLUS_FOUR -> "Wild +4"
             CardType.COLOR_CHAOS -> "Color Chaos"
         }
 }

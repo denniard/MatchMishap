@@ -5,5 +5,6 @@ enum class CardType(val displayName: String) {
     PAUSE("Pause"),
     U_TURN("U-Turn"),
     DOUBLE_UP("Double Up"),
+    PLUS_FOUR("Plus Four"),
     COLOR_CHAOS("Color Chaos")
 }
