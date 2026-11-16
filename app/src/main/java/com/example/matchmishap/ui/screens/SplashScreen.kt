@@ -9,6 +9,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -17,42 +18,35 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.foundation.Image
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import com.example.matchmishap.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.matchmishap.R
 import com.example.matchmishap.model.Card
 import com.example.matchmishap.model.CardColor
 import com.example.matchmishap.model.CardType
@@ -62,7 +56,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-    onSplashFinished: () -> Unit,
+    onSplashFinished: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val progress = remember { Animatable(0f) }
@@ -70,7 +64,7 @@ fun SplashScreen(
     LaunchedEffect(Unit) {
         progress.animateTo(
             targetValue = 1f,
-            animationSpec = tween(durationMillis = 2000, easing = FastOutSlowInEasing)
+            animationSpec = tween(durationMillis = 2200, easing = FastOutSlowInEasing)
         )
         delay(150)
         onSplashFinished()
@@ -88,166 +82,76 @@ fun SplashScreen(
     )
 
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_card_pattern),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+            painter = painterResource(id = R.drawable.bg_splash_screen),
+            contentDescription = "Match & Mishap Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
         )
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(24.dp),
+                .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
-            // Centered Logo & Cards (Teal 7 & Orange U-Turn)
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.weight(1f)
             ) {
-                // Card Pair Graphic
                 SplashCardPairGraphic()
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Image(
+                    painter = painterResource(id = R.drawable.ic_match_mishap_logo),
+                    contentDescription = "MATCH & MISHAP Logo",
+                    modifier = Modifier
+                        .width(320.dp)
+                        .height(85.dp)
+                )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // "MATCH & MISHAP" Title Banner Logo
-                Surface(
-                    shape = RoundedCornerShape(24.dp),
-                    color = Color(0xFF1B0A2E).copy(alpha = 0.95f),
-                    border = androidx.compose.foundation.BorderStroke(2.5.dp, Color(0xFFFFD700)),
-                    shadowElevation = 16.dp
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(horizontal = 28.dp, vertical = 14.dp)
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                imageVector = Icons.Rounded.Star,
-                                contentDescription = null,
-                                tint = Color(0xFFFFD700),
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "MATCH & MISHAP",
-                                style = MaterialTheme.typography.headlineLarge.copy(
-                                    fontWeight = FontWeight.Black,
-                                    color = Color(0xFFFFD700),
-                                    fontSize = 28.sp,
-                                    letterSpacing = 1.5.sp
-                                )
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Icon(
-                                imageVector = Icons.Rounded.Star,
-                                contentDescription = null,
-                                tint = Color(0xFFFFD700),
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(44.dp))
-
-                // Styled Striped Progress Bar Loading Indicator
                 StripedProgressBar(
                     progress = progress.value,
                     stripeOffset = stripeOffset,
                     modifier = Modifier
-                        .width(280.dp)
-                        .height(20.dp)
+                        .width(260.dp)
+                        .height(18.dp)
                 )
 
-                Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
-                // "DEALING CARDS..." Text
                 Text(
                     text = "DEALING CARDS...",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Black,
                         color = Color(0xFF00E5FF),
-                        fontSize = 15.sp,
+                        fontSize = 13.sp,
                         letterSpacing = 3.sp,
                         textAlign = TextAlign.Center
                     )
                 )
             }
 
-            // Bottom Footer Text: "© MISCHIEF GAMES"
             Text(
                 text = "© MISCHIEF GAMES",
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFA58BB8),
-                    fontSize = 12.sp,
+                    color = Color.White.copy(alpha = 0.6f),
+                    fontSize = 11.sp,
                     letterSpacing = 2.sp
                 ),
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 10.dp)
             )
-        }
-    }
-}
-
-@Composable
-private fun SplashBackgroundPattern(modifier: Modifier = Modifier) {
-    Canvas(modifier = modifier) {
-        val w = size.width
-        val h = size.height
-
-        // Radial dark purple gradient
-        drawRect(
-            brush = Brush.radialGradient(
-                colors = listOf(
-                    Color(0xFF4A1E6D).copy(alpha = 0.5f),
-                    Color(0xFF280F3B).copy(alpha = 0.95f),
-                    Color(0xFF1B0A2E)
-                ),
-                center = Offset(w / 2f, h / 2f),
-                radius = Math.max(w, h) * 0.75f
-            )
-        )
-
-        // Subtle repeating diamond / card patterns across canvas
-        val diamondSize = 36.dp.toPx()
-        val spacingX = 84.dp.toPx()
-        val spacingY = 84.dp.toPx()
-
-        val cols = (w / spacingX).toInt() + 2
-        val rows = (h / spacingY).toInt() + 2
-
-        for (col in -1..cols) {
-            for (row in -1..rows) {
-                val cx = col * spacingX + (if (row % 2 == 0) spacingX / 2f else 0f)
-                val cy = row * spacingY
-
-                val path = Path().apply {
-                    moveTo(cx, cy - diamondSize / 2f)
-                    lineTo(cx + diamondSize / 2f, cy)
-                    lineTo(cx, cy + diamondSize / 2f)
-                    lineTo(cx - diamondSize / 2f, cy)
-                    close()
-                }
-
-                drawPath(
-                    path = path,
-                    color = Color(0xFF4D2075).copy(alpha = 0.16f)
-                )
-
-                drawPath(
-                    path = path,
-                    color = Color(0xFF6B2A99).copy(alpha = 0.12f),
-                    style = Stroke(width = 1.2.dp.toPx())
-                )
-            }
         }
     }
 }
@@ -255,29 +159,27 @@ private fun SplashBackgroundPattern(modifier: Modifier = Modifier) {
 @Composable
 private fun SplashCardPairGraphic() {
     Box(
-        modifier = Modifier.size(width = 220.dp, height = 150.dp),
+        modifier = Modifier.size(width = 180.dp, height = 120.dp),
         contentAlignment = Alignment.Center
     ) {
-        // Teal 7 Card (Tilted Left ~ -14°)
         CardView(
             card = Card("splash_teal7", CardColor.TEAL, CardType.NUMBER, 7),
-            width = 92.dp,
-            height = 138.dp,
+            width = 72.dp,
+            height = 108.dp,
             modifier = Modifier
-                .offset(x = (-36).dp, y = 6.dp)
+                .offset(x = (-30).dp, y = 4.dp)
                 .rotate(-14f)
-                .shadow(12.dp, RoundedCornerShape(10.dp))
+                .shadow(10.dp, RoundedCornerShape(10.dp))
         )
 
-        // Orange U-Turn Card (Tilted Right ~ +14°)
         CardView(
             card = Card("splash_orange_uturn", CardColor.YELLOW, CardType.U_TURN),
-            width = 92.dp,
-            height = 138.dp,
+            width = 72.dp,
+            height = 108.dp,
             modifier = Modifier
-                .offset(x = 36.dp, y = 6.dp)
+                .offset(x = 30.dp, y = 4.dp)
                 .rotate(14f)
-                .shadow(12.dp, RoundedCornerShape(10.dp))
+                .shadow(10.dp, RoundedCornerShape(10.dp))
         )
     }
 }
@@ -306,13 +208,11 @@ private fun StripedProgressBar(
             val filledWidth = width * progress.coerceIn(0f, 1f)
 
             if (filledWidth > 0f) {
-                // Background fill of current progress area
                 drawRect(
                     color = darkTrackBg,
                     size = Size(filledWidth, height)
                 )
 
-                // Draw diagonal stripes (Teal & Orange alternating)
                 val stripeWidth = 16.dp.toPx()
                 var startX = -stripeWidth + (stripeOffset % (stripeWidth * 2))
                 var colorToggle = false
@@ -329,7 +229,6 @@ private fun StripedProgressBar(
                     val color = if (colorToggle) tealColor else orangeColor
                     colorToggle = !colorToggle
 
-                    // Draw striped segment clipped to current filled width
                     drawPath(
                         path = stripePath,
                         color = color
@@ -337,23 +236,15 @@ private fun StripedProgressBar(
 
                     startX += stripeWidth
                 }
-
-                // Glossy top accent line on progress bar
-                drawLine(
-                    color = Color.White.copy(alpha = 0.35f),
-                    start = Offset(0f, 1.dp.toPx()),
-                    end = Offset(filledWidth, 1.dp.toPx()),
-                    strokeWidth = 1.5.dp.toPx()
-                )
             }
         }
     }
 }
 
-@Preview(widthDp = 400, heightDp = 800)
+@Preview(widthDp = 800, heightDp = 400)
 @Composable
 fun SplashScreenPreview() {
     MatchMishapTheme {
-        SplashScreen(onSplashFinished = {})
+        SplashScreen()
     }
 }

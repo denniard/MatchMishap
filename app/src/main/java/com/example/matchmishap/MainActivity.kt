@@ -22,6 +22,7 @@ import com.example.matchmishap.engine.LeaderboardManager
 import com.example.matchmishap.ui.screens.GameTableScreen
 import com.example.matchmishap.ui.screens.MainMenuScreen
 import com.example.matchmishap.ui.screens.OnlineLobbyScreen
+import com.example.matchmishap.ui.screens.SplashScreen
 import com.example.matchmishap.ui.theme.MatchMishapTheme
 import com.example.matchmishap.viewmodel.GameViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -29,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 enum class AppScreen {
+    SPLASH,
     MAIN_MENU,
     ONLINE_LOBBY,
     GAME_TABLE
@@ -52,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     color = Color(0xFF070F18)
                 ) {
                     val uiState by gameViewModel.uiState.collectAsStateWithLifecycle()
-                    var currentScreen by remember { mutableStateOf(AppScreen.MAIN_MENU) }
+                    var currentScreen by remember { mutableStateOf(AppScreen.SPLASH) }
                     var onlinePlayerName by remember { mutableStateOf("") }
                     var onlinePlayerId by remember { mutableStateOf("") }
 
@@ -76,6 +78,13 @@ class MainActivity : ComponentActivity() {
                         label = "ScreenCrossfade"
                     ) { screen ->
                         when (screen) {
+                            AppScreen.SPLASH -> {
+                                SplashScreen(
+                                    onSplashFinished = {
+                                        currentScreen = AppScreen.MAIN_MENU
+                                    }
+                                )
+                            }
                             AppScreen.MAIN_MENU -> {
                                 MainMenuScreen(
                                     onStartGame = { selectedMode ->
