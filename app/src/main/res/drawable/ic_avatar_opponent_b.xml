@@ -1,34 +1,63 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="100dp"
-    android:height="100dp"
-    android:viewportWidth="100"
-    android:viewportHeight="100">
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
 
-    <!-- Background Circle -->
+    <!-- Outer Green Frame Ring -->
     <path
-        android:fillColor="#311B92"
-        android:pathData="M50,5 C74.8,5 95,25.2 95,50 C95,74.8 74.8,95 50,95 C25.2,95 5,74.8 5,50 C5,25.2 25.2,5 50,5 Z" />
-
-    <!-- Intense Spiky Hair -->
-    <path
-        android:fillColor="#FF5722"
-        android:pathData="M30,35 C40,15 70,15 80,35 L65,30 L50,40 L35,30 Z" />
-
-    <!-- Face -->
-    <path
-        android:fillColor="#FFB74D"
-        android:pathData="M32,45 C32,38 68,38 68,45 C68,68 32,68 32,45 Z" />
-
-    <!-- Intense Eyes & Grin -->
-    <path
-        android:fillColor="#B71C1C"
-        android:pathData="M40,51 L48,55 L40,57 Z" />
-    <path
-        android:fillColor="#B71C1C"
-        android:pathData="M60,51 L52,55 L60,57 Z" />
-    <path
-        android:strokeColor="#B71C1C"
+        android:fillColor="#558B2F"
+        android:strokeColor="#1B380A"
         android:strokeWidth="3"
-        android:strokeLineCap="round"
-        android:pathData="M42,68 Q50,62 58,68" />
+        android:pathData="M60,4 C90.9,4 116,29.1 116,60 C116,90.9 90.9,116 60,116 C29.1,116 4,90.9 4,60 C4,29.1 29.1,4 60,4 Z" />
+
+    <!-- Inner Light Green Backdrop Circle -->
+    <path
+        android:fillColor="#C5E1A5"
+        android:pathData="M60,12 C86.5,12 108,33.5 108,60 C108,86.5 86.5,108 60,108 C33.5,108 12,86.5 12,60 C12,33.5 33.5,12 60,12 Z" />
+
+    <!-- Green Patterned Shirt -->
+    <path
+        android:fillColor="#2E7D32"
+        android:strokeColor="#1B380A"
+        android:strokeWidth="2"
+        android:pathData="M28,102 C28,88 40,82 60,82 C80,82 92,88 92,102 L92,108 L28,108 Z" />
+    <path android:fillColor="#1B5E20" android:pathData="M38,88 L46,84 L52,94 L42,98 Z" />
+    <path android:fillColor="#1B5E20" android:pathData="M70,86 L78,92 L84,84 L76,82 Z" />
+
+    <!-- Neck -->
+    <path android:fillColor="#6D4C41" android:pathData="M52,74 L68,74 L68,84 L52,84 Z" />
+
+    <!-- Ears -->
+    <path android:fillColor="#6D4C41" android:strokeColor="#1B380A" android:strokeWidth="1.5" android:pathData="M34,50 C30,50 28,56 32,60 C36,64 40,60 40,54 Z" />
+    <path android:fillColor="#6D4C41" android:strokeColor="#1B380A" android:strokeWidth="1.5" android:pathData="M86,50 C90,50 92,56 88,60 C84,64 80,60 80,54 Z" />
+
+    <!-- Head & Face (Dark Skin) -->
+    <path
+        android:fillColor="#6D4C41"
+        android:strokeColor="#1B380A"
+        android:strokeWidth="2.5"
+        android:pathData="M36,46 C36,30 84,30 84,46 C84,68 72,78 60,78 C48,78 36,68 36,46 Z" />
+
+    <!-- Short Dark Fade Hair -->
+    <path
+        android:fillColor="#212121"
+        android:strokeColor="#1B380A"
+        android:strokeWidth="2"
+        android:pathData="M34,44 C34,26 86,26 86,44 C86,40 82,30 76,28 C68,26 52,26 44,28 C38,30 34,40 34,44 Z" />
+
+    <!-- Eyes (Dark) -->
+    <path android:fillColor="#FFFFFF" android:pathData="M44,48 C44,44 52,44 52,48 C52,52 44,52 44,48 Z" />
+    <path android:fillColor="#212121" android:pathData="M46,48 C46,45 50,45 50,48 C50,51 46,51 46,48 Z" />
+
+    <path android:fillColor="#FFFFFF" android:pathData="M68,48 C68,44 76,44 76,48 C76,52 68,52 68,48 Z" />
+    <path android:fillColor="#212121" android:pathData="M70,48 C70,45 74,45 74,48 C74,51 70,51 70,48 Z" />
+
+    <!-- Eyebrows -->
+    <path android:strokeColor="#1B380A" android:strokeWidth="2.5" android:strokeLineCap="round" android:pathData="M43,41 Q48,39 53,42" />
+    <path android:strokeColor="#1B380A" android:strokeWidth="2.5" android:strokeLineCap="round" android:pathData="M67,42 Q72,39 77,41" />
+
+    <!-- Warm Smile -->
+    <path android:strokeColor="#1B380A" android:strokeWidth="2.5" android:strokeLineCap="round" android:pathData="M48,64 Q60,72 72,64" />
+
 </vector>
