@@ -114,8 +114,8 @@ fun SplashScreen(
                     painter = painterResource(id = R.drawable.ic_match_mishap_logo),
                     contentDescription = "MATCH & MISHAP Logo",
                     modifier = Modifier
-                        .width(320.dp)
-                        .height(85.dp)
+                        .fillMaxWidth(0.9f)
+                        .height(180.dp)
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))

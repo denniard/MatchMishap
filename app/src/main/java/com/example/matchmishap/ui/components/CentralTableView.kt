@@ -181,24 +181,45 @@ fun CentralTableView(
 
                     Spacer(modifier = Modifier.height(3.dp))
 
-                    Button(
-                        onClick = onDrawCard,
-                        enabled = isHumanTurn && !hasDrawnCardThisTurn,
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (accumulatedPenalty > 0) Color(0xFFE53935) else Color(0xFFFF9800),
-                            disabledContainerColor = Color.Gray.copy(alpha = 0.4f)
-                        ),
-                        shape = RoundedCornerShape(10.dp),
-                        modifier = Modifier.height(24.dp),
-                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 6.dp, vertical = 0.dp)
-                    ) {
-                        Text(
-                            text = if (accumulatedPenalty > 0) "DRAW +$accumulatedPenalty" else "DRAW",
-                            style = MaterialTheme.typography.labelSmall.copy(
-                                fontWeight = FontWeight.Black,
-                                fontSize = 9.sp
+                    if (hasDrawnCardThisTurn && isHumanTurn) {
+                        Button(
+                            onClick = onPassTurn,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFFFD700),
+                                contentColor = Color.Black
+                            ),
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier.height(26.dp),
+                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = "PASS TURN",
+                                style = MaterialTheme.typography.labelSmall.copy(
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 10.sp
+                                )
                             )
-                        )
+                        }
+                    } else {
+                        Button(
+                            onClick = onDrawCard,
+                            enabled = isHumanTurn && !hasDrawnCardThisTurn,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (accumulatedPenalty > 0) Color(0xFFE53935) else Color(0xFFFF9800),
+                                disabledContainerColor = Color.Gray.copy(alpha = 0.4f)
+                            ),
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier.height(24.dp),
+                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 6.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = if (accumulatedPenalty > 0) "DRAW +$accumulatedPenalty" else "DRAW",
+                                style = MaterialTheme.typography.labelSmall.copy(
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 9.sp
+                                )
+                            )
+                        }
                     }
                 }
 

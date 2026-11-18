@@ -183,6 +183,64 @@ object GameEngine {
         )
     }
 
+    fun drawSingleCard(currentState: GameState, isPenalty: Boolean = false): GameState {
+        if (currentState.isGameOver) return currentState
+
+        val currentP = currentState.currentPlayer
+
+        val drawResult = DeckManager.drawCards(
+            drawPile = currentState.drawPile,
+            discardPile = currentState.discardPile,
+            count = 1
+        )
+
+        if (drawResult.drawnCards.isEmpty()) {
+            val nextIndex = currentState.getNextPlayerIndex(step = 1)
+            return currentState.copy(
+                currentPlayerIndex = nextIndex,
+                accumulatedPenalty = 0,
+                statusMessage = "No cards remaining! Turn passed to ${currentState.players[nextIndex].name}."
+            )
+        }
+
+        val drawnCard = drawResult.drawnCards.first()
+        val updatedHand = currentP.hand + drawnCard
+        val updatedPlayers = currentState.players.map {
+            if (it.id == currentP.id) it.copy(hand = updatedHand) else it
+        }
+
+        val remainingPenalty = if (isPenalty) (currentState.accumulatedPenalty - 1).coerceAtLeast(0) else 0
+
+        val isFinishPenalty = isPenalty && remainingPenalty == 0
+        val nextIndex = if (isFinishPenalty) currentState.getNextPlayerIndex(step = 1) else currentState.currentPlayerIndex
+        val nextPlayerName = updatedPlayers[nextIndex].name
+
+        val statusMsg = if (isPenalty) {
+            if (remainingPenalty > 0) {
+                "${currentP.name} drew penalty card! ($remainingPenalty remaining)"
+            } else {
+                "${currentP.name} finished penalty draw! $nextPlayerName's turn."
+            }
+        } else {
+            val canPlayDrawn = drawnCard.canPlayOn(currentState.topCard, currentState.activeColor, 0)
+            if (canPlayDrawn) {
+                "${currentP.name} drew ${drawnCard.displayTitle}! Play it or click PASS TURN."
+            } else {
+                "${currentP.name} drew ${drawnCard.displayTitle} (no match). Click PASS TURN!"
+            }
+        }
+
+        return currentState.copy(
+            players = updatedPlayers,
+            currentPlayerIndex = nextIndex,
+            drawPile = drawResult.newDrawPile,
+            discardPile = drawResult.newDiscardPile,
+            accumulatedPenalty = remainingPenalty,
+            statusMessage = statusMsg,
+            drawnCardThisTurn = if (!isPenalty) drawnCard else null
+        )
+    }
+
     fun drawCard(currentState: GameState): GameState {
         if (currentState.isGameOver) return currentState
 

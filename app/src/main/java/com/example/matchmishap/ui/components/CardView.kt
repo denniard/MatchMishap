@@ -40,9 +40,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -319,6 +322,39 @@ private fun CardContent(
 }
 
 @Composable
+private fun OutlinedText(
+    text: String,
+    style: TextStyle,
+    outlineColor: Color = Color.Black,
+    fillColor: Color = Color.White,
+    strokeWidth: Dp = 3.dp,
+    modifier: Modifier = Modifier
+) {
+    val density = LocalDensity.current
+    val strokePx = with(density) { strokeWidth.toPx() }
+
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+    ) {
+        Text(
+            text = text,
+            style = style.copy(
+                color = outlineColor,
+                drawStyle = Stroke(
+                    width = strokePx,
+                    join = StrokeJoin.Round
+                )
+            )
+        )
+        Text(
+            text = text,
+            style = style.copy(color = fillColor)
+        )
+    }
+}
+
+@Composable
 private fun NumberCardCenter(
     numberValue: Int,
     cardWidth: Dp
@@ -327,15 +363,14 @@ private fun NumberCardCenter(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
+        OutlinedText(
             text = "$numberValue",
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Black,
-                fontSize = if (cardWidth > 80.dp) 44.sp else 32.sp,
-                color = Color.White,
+                fontSize = if (cardWidth > 80.dp) 44.sp else 30.sp,
                 fontFamily = FontFamily.SansSerif
             ),
-            textAlign = TextAlign.Center
+            strokeWidth = if (cardWidth > 80.dp) 4.dp else 2.5.dp
         )
     }
 }
@@ -350,14 +385,14 @@ private fun DoubleUpCardCenter(
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxHeight().padding(vertical = 4.dp)
     ) {
-        Text(
+        OutlinedText(
             text = "+2",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Black,
                 fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
-                color = Color.White,
                 fontFamily = FontFamily.SansSerif
-            )
+            ),
+            strokeWidth = if (cardWidth > 80.dp) 3.dp else 2.dp
         )
 
         PillBanner(text = "DOUBLE UP", pillColor = theme.pillColor, cardWidth = cardWidth)
@@ -370,14 +405,14 @@ private fun DoubleUpCardCenter(
 
         PillBanner(text = "DOUBLE UP", pillColor = theme.pillColor, cardWidth = cardWidth)
 
-        Text(
+        OutlinedText(
             text = "+2",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Black,
                 fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
-                color = Color.White,
                 fontFamily = FontFamily.SansSerif
-            )
+            ),
+            strokeWidth = if (cardWidth > 80.dp) 3.dp else 2.dp
         )
     }
 }
@@ -580,14 +615,14 @@ private fun PlusFourCardCenter(
         verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxHeight().padding(vertical = 4.dp)
     ) {
-        Text(
+        OutlinedText(
             text = "+4",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Black,
                 fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
-                color = Color.White,
                 fontFamily = FontFamily.SansSerif
-            )
+            ),
+            strokeWidth = if (cardWidth > 80.dp) 3.dp else 2.dp
         )
 
         PillBanner(text = "PLUS FOUR", pillColor = theme.pillColor, cardWidth = cardWidth)
@@ -600,14 +635,14 @@ private fun PlusFourCardCenter(
 
         PillBanner(text = "PLUS FOUR", pillColor = theme.pillColor, cardWidth = cardWidth)
 
-        Text(
+        OutlinedText(
             text = "+4",
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Black,
                 fontSize = if (cardWidth > 80.dp) 20.sp else 15.sp,
-                color = Color.White,
                 fontFamily = FontFamily.SansSerif
-            )
+            ),
+            strokeWidth = if (cardWidth > 80.dp) 3.dp else 2.dp
         )
     }
 }
@@ -629,13 +664,13 @@ private fun CornerBadgeContent(
             CardType.U_TURN -> "↺"
             CardType.COLOR_CHAOS -> "★"
         }
-        Text(
+        OutlinedText(
             text = badgeText,
             style = MaterialTheme.typography.labelSmall.copy(
                 fontWeight = FontWeight.Black,
-                fontSize = 9.sp,
-                color = Color.White
-            )
+                fontSize = 10.sp
+            ),
+            strokeWidth = 2.dp
         )
     }
 }

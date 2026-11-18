@@ -125,8 +125,8 @@ fun MainMenuScreen(
                         painter = painterResource(id = R.drawable.ic_match_mishap_logo),
                         contentDescription = "MATCH & MISHAP Logo",
                         modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .height(68.dp)
+                            .fillMaxWidth(1f)
+                            .height(190.dp)
                             .padding(bottom = 6.dp)
                     )
 

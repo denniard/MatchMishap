@@ -141,11 +141,22 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val currentState = _uiState.value
         if (!isLocalHumanTurn || currentState.isWaitingForColorChoice) return
 
-        val newState = GameEngine.drawCard(currentState)
-        updateState(newState)
+        viewModelScope.launch {
+            val countToDraw = if (currentState.accumulatedPenalty > 0) currentState.accumulatedPenalty else 1
+            val isPenalty = currentState.accumulatedPenalty > 0
 
-        if (!isLocalHumanTurn) {
-            checkAndTriggerAiTurn()
+            for (i in 1..countToDraw) {
+                val state = _uiState.value
+                val newState = GameEngine.drawSingleCard(state, isPenalty = isPenalty)
+                updateState(newState)
+                if (i < countToDraw) {
+                    delay(300L)
+                }
+            }
+
+            if (!isLocalHumanTurn) {
+                checkAndTriggerAiTurn()
+            }
         }
     }
 
@@ -248,8 +259,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                     updateState(stateAfterPlay)
                 }
             } else {
-                val stateAfterDraw = GameEngine.drawCard(currentState)
-                updateState(stateAfterDraw)
+                val countToDraw = if (currentState.accumulatedPenalty > 0) currentState.accumulatedPenalty else 1
+                val isPenalty = currentState.accumulatedPenalty > 0
+
+                var stateAfterDraw = currentState
+                for (i in 1..countToDraw) {
+                    val state = _uiState.value
+                    stateAfterDraw = GameEngine.drawSingleCard(state, isPenalty = isPenalty)
+                    updateState(stateAfterDraw)
+                    if (i < countToDraw) {
+                        delay(300L)
+                    }
+                }
 
                 if (stateAfterDraw.drawnCardThisTurn != null) {
                     delay(500L)
